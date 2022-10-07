@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('{path?}', 'RenderSpaView')->where('path', '[a-zA-Z0-9-/]+');
