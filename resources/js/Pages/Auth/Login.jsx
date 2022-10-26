@@ -59,7 +59,7 @@ export default function Login({ errors }) {
 
                                             </div>
                                             <div className="form-check form-switch">
-                                                <input  value={data.remember} onChange={(e) => setData({...values, remember: e.target.checked})} name='remember' id='remember' className="form-check-input" type="checkbox" id="rememberMe" />
+                                                <input  value={data.remember} onChange={(e) => setData({...values, remember: e.target.checked})} name='remember' className="form-check-input" type="checkbox" id="rememberMe" />
                                                 <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
                                             </div>
                                             <div className="text-center">

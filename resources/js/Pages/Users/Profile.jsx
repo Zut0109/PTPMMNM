@@ -1,8 +1,11 @@
 import { useForm, usePage } from '@inertiajs/inertia-react';
-import React from 'react'
 import Base from '../../Layouts/Base'
+import React, { useState } from "react";
 
 export default function Profile(props) {
+
+    const [selectedImage, setSelectedImage] = useState(null);
+
     const { auth } = usePage().props;
 
     const {data, setData, put, reset, errors} = useForm({ name: auth.user.name, email: auth.user.email, username: auth.user.username, address: auth.user.address, });
@@ -27,7 +30,7 @@ export default function Profile(props) {
                     <div className="row gx-4">
                         <div className="col-auto">
                         <div className="avatar avatar-xl position-relative">
-                            <img src="/img/team-2.jpg" alt="profile_image" className="w-100 border-radius-lg shadow-sm" />
+                            <img src={'/img/user_avt/' + auth.user.avt_url} alt="profile_image" className="w-100 border-radius-lg shadow-sm" />
                         </div>
                         </div>
                         <div className="col-auto my-auto">
@@ -57,9 +60,33 @@ export default function Profile(props) {
                                     <button type='submit' className="btn btn-primary btn-sm ms-auto">Save</button>
                                     </div>
                                 </div>
+                                
                                 <div className="card-body">                                
                                     <p className="text-uppercase text-sm">User Information</p>
                                     <div className="row">
+                                        <div className="col-md-6 ">
+                                            <div className='form-group'>
+                                                <label htmlFor="username" className="form-control-label">Change avatar</label>
+                                                {selectedImage && (
+                                                    <div>
+                                                    <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                                                    <br />
+                                                    <button className="btn btn-primary mt-3"onClick={()=>setSelectedImage(null)}>Remove</button>
+                                                    </div>
+                                                )}
+                                                <br>
+                                                </br>
+                                                <input
+                                                    className='btn btn-primary'
+                                                    type="file"
+                                                    name="myImage"
+                                                    onChange={(event) => {
+                                                    console.log(event.target.files[0]);
+                                                    setSelectedImage(event.target.files[0]);
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
                                             <label htmlFor="username" className="form-control-label">Username</label>
@@ -101,7 +128,7 @@ export default function Profile(props) {
                                 <div className="col-4 col-lg-4 order-lg-2">
                                 <div className="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
                                     <a href="javascript:;">
-                                    <img src="/img/team-2.jpg" className="rounded-circle img-fluid border border-2 border-white" />
+                                    <img src={'/img/user_avt/' + auth.user.avt_url} className="rounded-circle img-fluid border border-2 border-white" />
                                     </a>
                                 </div>
                                 </div>

@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username', 25)->unique()->nullable();
+            $table->boolean('is_admin')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('avt_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

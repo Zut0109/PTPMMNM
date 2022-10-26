@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class MovieFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,14 +20,10 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'username' => $this->faker->unique()->username(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'is_admin'=>0,
-            'address' => $this->faker->address(),
-            'email_verified_at' => now(),
-            'password' => '123456',
-            'remember_token' => Str::random(10),
-            'avt_url' =>'',
+            'time' => '1h',
+            'tag' => 'notag',
+            'date' => now(),
+            'comment' => 'hay',
         ];
     }
 
