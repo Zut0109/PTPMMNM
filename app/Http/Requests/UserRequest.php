@@ -30,6 +30,7 @@ class UserRequest extends FormRequest
             'name' => ['required'],
             'password' => (empty($this->user->password)) ? ['required', Password::defaults()] : '',
             'address' => ['required'],
+            'avatar' => ['required'],
         ];
     }
 }

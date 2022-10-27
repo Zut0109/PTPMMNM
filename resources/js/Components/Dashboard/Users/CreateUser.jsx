@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function CreateUser({close}) {
 
-    const {data, setData, post, reset, errors} = useForm({ name: '', email: '', username: '', address: '', password: '', });
+    const {data, setData, post, reset, errors} = useForm({ name: '', email: '', username: '', address: '', password: '', avatar:'0'});
 
     const onChange = (e) => setData({ ...data, [e.target.id]: e.target.value });
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieDetailController;
+use App\Http\Controllers\FileuploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -22,9 +23,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile', ProfileController::class)->name('profile');
 
+    Route::get('viewerprofile', [ProfileController::class, 'viewerprofile'])->name('viewerprofile');
+
+    Route::post('profile', [ProfileController::class, 'upload'])->name('profile.upload');
+
     Route::apiResource('movies', MovieController::class);
     
-    Route::get('moviedetail', MovieDetailController::class)->name('moviedetail');
+    Route::post('moviedetail', [MovieDetailController::class, 'upload'])->name('moviedetail.upload');
+
 });
 
 Route::middleware('guest')->group(function () {
@@ -38,3 +44,8 @@ Route::middleware('guest')->group(function () {
     Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 });
 
+Route::get('/token', function (Request $request) {
+    $token = $request->session()->token();
+ 
+    $token = csrf_token();
+});

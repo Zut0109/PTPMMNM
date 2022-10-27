@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 
 class UserController extends Controller
 {
@@ -30,7 +31,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         $attr = $request->toArray();
 
@@ -51,4 +52,5 @@ class UserController extends Controller
             'message' => 'User has been deleted',
         ]);
     }
+    
 }

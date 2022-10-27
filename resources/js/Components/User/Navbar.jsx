@@ -26,7 +26,7 @@ export default function Navbar({props, pageName}) {
                     <ul className="navbar-nav justify-content-end">                        
                             <li className="nav-item pe-3 d-flex align-items-center">
                                 <ul className="nav-link text-white" href="#" role="button" aria-expanded="false">
-                                    <img src="/img/team-2.jpg" className="avatar avatar-sm  me-3 " />
+                                    <img src={'/avatar/avatars/' + auth.user.avatar +'.jpg'} className="avatar avatar-sm  me-3 " />
                                     {auth.user.name}
                                 </ul>
                             </li>

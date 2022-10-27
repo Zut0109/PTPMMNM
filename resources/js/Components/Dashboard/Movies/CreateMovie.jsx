@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function CreateMovie({close}) {
 
-    const {data, setData, post, reset, errors} = useForm({ name: '', time: '', date: '', tag: '', comment: '', });
+    const {data, setData, post, reset, errors} = useForm({ name: '', time: '', date: '', tag: '', comment: '', image:'0', link:'' });
 
     const onChange = (e) => setData({ ...data, [e.target.id]: e.target.value });
 
@@ -44,9 +44,15 @@ export default function CreateMovie({close}) {
                         </div>
                         <div className="form-group">
                             <label htmlFor="comment" className="col-form-label">Comment:</label>
-                            <input type="text" className="form-control" name='comment' value={data.password} onChange={onChange} id="comment"/>
+                            <input type="text" className="form-control" name='comment' value={data.comment} onChange={onChange} id="comment"/>
                             {errors && <div className='text-danger mt-1'>{errors.comment}</div>}
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="link" className="col-form-label">Link:</label>
+                            <input type="text" className="form-control" name='link' value={data.link} onChange={onChange} id="link"/>
+                            {errors && <div className='text-danger mt-1'>{errors.link}</div>}
+                        </div>
+                        <input type="hidden" name="image" value="0"/>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>

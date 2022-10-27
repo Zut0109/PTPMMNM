@@ -84,7 +84,7 @@ export default function Index(props) {
                                                 <td className='text-left'>
                                                     <div className="d-flex px-2">
                                                         <div>
-                                                            <img src="/img/team-2.jpg" className="avatar avatar-sm  me-3 " />
+                                                            <img src={'/avatar/avatars/' + user.avatar +'.jpg'} className="avatar avatar-sm  me-3 " />
                                                         </div>
                                                         <div className="my-auto">
                                                             <h6 className="mb-0 text-sm">{user.name}</h6>

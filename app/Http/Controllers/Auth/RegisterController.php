@@ -21,6 +21,7 @@ class RegisterController extends Controller
             'username' => ['required'],
             'email' => ['required','unique:users'],
             'password' => ['required'],
+            'avatar' => ['required'],
         ]);
 
         if($validated) {

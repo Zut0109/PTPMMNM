@@ -18,7 +18,7 @@ export default function Sidebar() {
                         <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">List Watch</h6>
                     </li>
                     <li className="nav-item">
-                        <Link className={`${route().current('profile') && 'active'} nav-link`} href={route('profile')}>
+                        <Link className={`${route().current('profile') && 'active'} nav-link`}>
                             <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i className="ni ni-single-02 text-dark text-sm opacity-10" />
                             </div>
@@ -26,7 +26,7 @@ export default function Sidebar() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={`${route().current('profile') && 'active'} nav-link`} href={route('profile')}>
+                        <Link className={`${route().current('profile') && 'active'} nav-link`} >
                             <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i className="ni ni-single-02 text-dark text-sm opacity-10" />
                             </div>
@@ -37,7 +37,7 @@ export default function Sidebar() {
                         <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manage</h6>
                     </li>                    
                     <li className="nav-item">
-                        <Link className={`${route().current('users.*') && 'active'} nav-link`} href={route('users.index')}>
+                        <Link className={`${route().current('profile') && 'active'} nav-link`} href={route('viewerprofile')}>
                             <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i className="fas fa-user-lock text-warning text-sm opacity-10" />
                             </div>

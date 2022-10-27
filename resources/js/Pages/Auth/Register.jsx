@@ -4,7 +4,7 @@ import Auth from '../../Layouts/Auth'
 
 export default function Register({ errors }) {
     const {data, setData, post} = useForm({
-        name: '', username: '', email: '', password:'',
+        name: '', username: '', email: '', password:'', avatar:'0',
     })
 
     const changeHandler = (e) => setData({...data, [e.target.id]: e.target.value})
@@ -76,6 +76,10 @@ export default function Register({ errors }) {
                                 <div className="mb-3">
                                     <input value={data.password} onChange={changeHandler} type="password" name='password' id='password' className="form-control" placeholder="Password" aria-label="Password" />
                                     {errors && (<div className='text-danger mt-1'>{errors.password}</div>)}
+                                </div>
+                                <div className="mb-3">
+                                    <input type="hidden" name='avatar' id='avatar' value="0" />
+
                                 </div>
                                 <div className="text-center">
                                     <button type="submit" className="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>

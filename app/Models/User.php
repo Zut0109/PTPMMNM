@@ -25,7 +25,7 @@ class User extends Authenticatable
         'is_admin',
         'password',
         'google_id',
-        'avt_url',
+        'avatar',
     ];
 
     /**

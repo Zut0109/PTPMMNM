@@ -8,7 +8,7 @@ import EditMovie from '../../Components/Dashboard/Movies/EditMovie';
 import { Inertia } from '@inertiajs/inertia';
 
 export default function Index(props) {
-
+    const [selectedImage, setSelectedImage] = useState(null);
     const {data: movies, links, meta} = props.movies; 
     const [state, setState] = useState([])
     const [addDialogHandler, addCloseTrigger,addTrigger] = useDialog()
@@ -71,6 +71,7 @@ export default function Index(props) {
                                         <tr>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-centter">#</th>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">Name</th>
+                                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">Thumnail</th>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">Time</th>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">Date</th>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">Tag</th>
@@ -83,12 +84,14 @@ export default function Index(props) {
                                                 <td className='text-center'>{meta.from + index}</td>
                                                 <td className='text-left'>
                                                     <div className="d-flex px-2">
-                                                        <div>
-                                                            <img src="/img/team-2.jpg" className="avatar avatar-sm  me-3 " />
-                                                        </div>
                                                         <div className="my-auto">
                                                             <h6 className="mb-0 text-sm">{movie.name}</h6>
                                                         </div>
+                                                    </div>
+                                                </td>
+                                                <td className='text-left'>
+                                                    <div>
+                                                        <img src={'/storage/movies/' + movie.id+ '.jpg'} className="img-thumbnail" />
                                                     </div>
                                                 </td>
                                                 <td className='text-left'>
@@ -109,6 +112,27 @@ export default function Index(props) {
                                                 </td>
                                                 <td className="align-middle text-center" width="10%">
                                                 <div>
+                                                <form  action={route('moviedetail.upload')} method="POST" enctype="multipart/form-data">
+                                                    
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <input type="hidden" name="movieid" value={movie.id}/>
+                                                    <div className='form-group'>
+                                                        <label htmlFor="image" className="form-control-label">Change thumnail</label>
+                                                                            <br>
+                                                                            </br>
+                                                                            <input
+                                                                                className='btn btn-primary'
+                                                                                type="file"
+                                                                                name="image"
+                                                                                onChange={(event) => {
+                                                                                console.log(event.target.files[0]);
+                                                                                setSelectedImage(event.target.files[0]);
+                                                                                }}
+                                                                            />
+                                                        </div>
+                                                        <button type='submit' className="btn btn-primary btn-sm ms-auto">Upload</button>
+                                                    </form>
+
                                                     <button type="button" onClick={() => openUpdateDialog(movie)} className="btn btn-vimeo btn-icon-only mx-2">
                                                         <span className="btn-inner--icon"><i className="fas fa-pencil-alt"></i></span>
                                                     </button>

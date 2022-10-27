@@ -30,6 +30,7 @@ class MovieRequest extends FormRequest
             'tag' => ['required'],
             'date' => ['required'],
             'comment' => ['required'],
+            'link' => ['required'],
         ];
     }
 }

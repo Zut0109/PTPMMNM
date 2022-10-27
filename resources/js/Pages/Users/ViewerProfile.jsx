@@ -1,8 +1,8 @@
 import { useForm, usePage } from '@inertiajs/inertia-react';
-import Base from '../../Layouts/Base'
+import Viewer from '../../Layouts/Viewer'
 import React, { useState } from "react";
 
-export default function Profile(props) {
+export default function ViewerProfile(props) {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -152,5 +152,5 @@ export default function Profile(props) {
     )
 }
 
-Profile.layout = (page) => <Base children={page} title={"Profile"}/>
+ViewerProfile.layout = (page) => <Viewer children={page} title={"Profile"}/>
 
