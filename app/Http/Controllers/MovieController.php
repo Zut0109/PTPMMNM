@@ -6,6 +6,7 @@ use App\Http\Requests\MovieRequest;
 use App\Http\Resources\MovieResource;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 
 class MovieController extends Controller
@@ -30,7 +31,7 @@ class MovieController extends Controller
         ]);
     }
 
-    public function update(MovieRequest $request, Movie $movie)
+    public function update(Request $request, Movie $movie)
     {
         $attr = $request->toArray();
 
@@ -51,4 +52,5 @@ class MovieController extends Controller
             'message' => 'Movie has been deleted',
         ]);
     }
+    
 }
