@@ -22,13 +22,13 @@ export default function FormMovie({errors, submit, data, setData}) {
                     {errors && <div className='text-danger mt-1'>{errors.date}</div>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="tag" className="col-form-label">Tag:</label>
-                    <input type="text" className="form-control" name='tag' value={`${data.tag || ''}`} onChange={onChange} id="tag"/>
+                    <label htmlFor="comment" className="col-form-label">Tag:</label>
+                    <input type="text" rows="5" cols="33" className="form-control" name='tag' value={`${data.tag || ''}`} onChange={onChange} id="tag"/>
                     {errors && <div className='text-danger mt-1'>{errors.tag}</div>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="comment" className="col-form-label">Comment:</label>
-                    <input type="text" className="form-control" name='comment' value={`${data.comment || ''}`} onChange={onChange} id="comment"/>
+                    <textarea rows="5" cols="33" className="form-control" name='comment' value={`${data.comment || ''}`} onChange={onChange} id="comment"/>
                     {errors && <div className='text-danger mt-1'>{errors.comment}</div>}
                 </div>
             </div>

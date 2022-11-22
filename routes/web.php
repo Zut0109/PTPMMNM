@@ -10,6 +10,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieDetailController;
 use App\Http\Controllers\FileuploadController;
+use App\Http\Controllers\ViewerController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProducerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -29,8 +32,20 @@ Route::middleware('auth')->group(function () {
 
     Route::apiResource('movies', MovieController::class);
     
-    Route::post('moviedetail', [MovieDetailController::class, 'upload'])->name('moviedetail.upload');
+    Route::get('editmovie', [MovieDetailController::class, 'show'])->name('editmovie');
+    Route::post('uploadmovieimage', [MovieDetailController::class, 'upload'])->name('uploadmovieimage');
+    Route::post('uploadvideo', [MovieDetailController::class, 'uploadvideo'])->name('uploadvideo');
 
+    Route::apiResource('tags', TagController::class);
+
+    Route::get('moviedetail',  [ViewerController::class, 'show'])->name('moviedetail');
+    Route::get('watch',  [ViewerController::class, 'watch'])->name('watch');
+    Route::get('movielist',  [ViewerController::class, 'movielist'])->name('movielist');
+    Route::get('animelist',  [ViewerController::class, 'animelist'])->name('animelist');
+    Route::get('favoritelist',  [ViewerController::class, 'favoritelist'])->name('favoritelist');
+    Route::get('historylist',  [ViewerController::class, 'historylist'])->name('historylist');
+
+    Route::put('addfavorite', [MovieController::class, 'favorite'])->name('addfavorite');
 });
 
 Route::middleware('guest')->group(function () {

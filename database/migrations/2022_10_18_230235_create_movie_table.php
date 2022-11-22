@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('time')->nullable();
             $table->timestamp('date')->nullable();
-            $table->string('tag');
-            $table->string('comment')->nullable();
-            $table->string('link')->nullable();
+            $table->string('tag')->nullable();
+            $table->string('type')->nullable();
+            $table->mediumText('comment')->nullable();
             $table->timestamps();
         });
     }

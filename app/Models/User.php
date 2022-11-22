@@ -50,4 +50,12 @@ class User extends Authenticatable
     public function setPasswordAttribute($password) {
         $this->attributes['password'] = bcrypt($password);
     }
+    public function favoriteMovies()
+    {
+        return $this->belongsToMany(Movie::class, 'favorite_movies', 'user_id', 'movie_id');
+    }
+    public function historyMovies()
+    {
+        return $this->belongsToMany(Movie::class, 'history_movies', 'user_id_history', 'movie_id');
+    }
 }

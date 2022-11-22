@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 
 export default function EditMovie({close, model}) {
 
-    const {data, setData, put, reset, errors} = useForm({ name: model.name, time: model.time, date: model.date, tag: model.tag, comment: model.comment, image: model.image,});
+    const {data, setData, put, reset, errors} = useForm({ name: model.name, time: model.time, date: model.date, tag: model.tag, comment: model.comment, });
 
     const onChange = (e) => setData({ ...data, [e.target.id]: e.target.value });
 
@@ -21,7 +21,7 @@ export default function EditMovie({close, model}) {
 
     useEffect(() => {
         setData({...data,
-            name: model.name, time: model.time, date: model.date, tag: model.tag, comment: model.comment, image: model.image,
+            name: model.name, time: model.time, date: model.date, tag: model.tag, comment: model.comment,
         });
     }, [model]);
 
@@ -51,7 +51,7 @@ export default function EditMovie({close, model}) {
                         </div>
                         <div className="form-group">
                             <label htmlFor="comment" className="col-form-label">Comment:</label>
-                            <input type="text" className="form-control" name='comment' value={`${data.comment || ''}`} onChange={onChange} id="comment"/>
+                            <textarea rows="5" cols="33" type="text" className="form-control" name='comment' value={`${data.comment || ''}`} onChange={onChange} id="comment"/>
                             {errors && <div className='text-danger mt-1'>{errors.comment}</div>}
                         </div>
                 </div>

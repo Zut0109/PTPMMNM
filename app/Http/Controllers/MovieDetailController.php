@@ -19,11 +19,21 @@ class MovieDetailController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('Movies/MovieDetail');
+        $movie =  new MovieResource(Movie::findOrFail($request->id));
+        return inertia('Movies/Profile', [
+            'movie' => $movie,
+        ]);
     }
-    public function upload(Request $request,Movie $movie)
+    public function show(Request $request)
     {
-        $movieid = $request->movieid;
+        $movie =  new MovieResource(Movie::findOrFail($request->id));
+        return inertia('Movies/Profile', [
+            'movie' => $movie,
+        ]);
+    }
+    public function upload(Request $request)
+    {
+        $movieid = $request->id;
         $movie = movie::find($movieid);
         $movie->image = $movieid;
         $movie->update();
@@ -32,11 +42,28 @@ class MovieDetailController extends Controller
             $newfile = $request->file('image');
             $path = $request->file('image')->storeAs(
                 'movies',
-                $request->movieid.'.'.$newfile->getClientOriginalExtension(),
+                $request->id.'.'.$newfile->getClientOriginalExtension(),
                 'public'
             );
         }
-
+        return back()
+        ->with('success','You have successfully upload file.');
+    }
+    public function uploadvideo(Request $request)
+    {
+        $movieid = $request->id;
+        $movie = movie::find($movieid);
+        $movie->image = $movieid;
+        $movie->update();
+        $file = $request->hasFile('video');
+        if($file){
+            $newfile = $request->file('video');
+            $path = $request->file('video')->storeAs(
+                'videos',
+                $request->id.'.'.$newfile->getClientOriginalExtension(),
+                'public'
+            );
+        }
         return back()
         ->with('success','You have successfully upload file.');
     }

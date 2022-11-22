@@ -75,7 +75,7 @@ export default function Index(props) {
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">Time</th>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">Date</th>
                                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">Tag</th>
-                                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Comment</th>
+                                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">Type</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -91,7 +91,7 @@ export default function Index(props) {
                                                 </td>
                                                 <td className='text-left'>
                                                     <div>
-                                                        <img src={'/storage/movies/' + movie.id+ '.jpg'} className="img-thumbnail" />
+                                                        <img src={'/storage/movies/' + movie.id+ '.jpg'} style={{height : "200px", width : "300px"}} className="img-thumbnail" />
                                                     </div>
                                                 </td>
                                                 <td className='text-left'>
@@ -107,35 +107,16 @@ export default function Index(props) {
                                                 </td>
                                                 <td className="align-middle text-left">
                                                     <div className="d-flex align-items-center text-left">
-                                                        <span className="text-xs font-weight-bold mb-0">{movie.comment}</span>
+                                                        <span className="text-xs font-weight-bold mb-0">{movie.type}</span>
                                                     </div>
                                                 </td>
                                                 <td className="align-middle text-center" width="10%">
                                                 <div>
-                                                <form  action={route('moviedetail.upload')} method="POST" enctype="multipart/form-data">
-                                                    
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                    <input type="hidden" name="movieid" value={movie.id}/>
-                                                    <div className='form-group'>
-                                                        <label htmlFor="image" className="form-control-label">Change thumnail</label>
-                                                                            <br>
-                                                                            </br>
-                                                                            <input
-                                                                                className='btn btn-primary'
-                                                                                type="file"
-                                                                                name="image"
-                                                                                onChange={(event) => {
-                                                                                console.log(event.target.files[0]);
-                                                                                setSelectedImage(event.target.files[0]);
-                                                                                }}
-                                                                            />
-                                                        </div>
-                                                        <button type='submit' className="btn btn-primary btn-sm ms-auto">Upload</button>
+                                                    <form action="editmovie" method="get">
+                                                        <input type="hidden" name="id" value={movie.id}/>
+                                                        <input type="submit" className="btn btn-vimeo" value="Edit">
+                                                        </input>
                                                     </form>
-
-                                                    <button type="button" onClick={() => openUpdateDialog(movie)} className="btn btn-vimeo btn-icon-only mx-2">
-                                                        <span className="btn-inner--icon"><i className="fas fa-pencil-alt"></i></span>
-                                                    </button>
                                                     <button type="button" onClick={() => openDestroyDialog(movie)} className="btn btn-youtube btn-icon-only">
                                                         <span className="btn-inner--icon"><i className="fas fa-trash"></i></span>
                                                     </button>

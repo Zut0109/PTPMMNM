@@ -52,5 +52,13 @@ class MovieController extends Controller
             'message' => 'Movie has been deleted',
         ]);
     }
+    public function favorite(Request $request)
+    {
+        auth()->user()->favoriteMovies()->toggle([$request->id]);
+        return back()->with([
+            'type' => 'success',
+            'message' => 'You have successfully add this movie to favorite.',
+        ]);
+    }
     
 }

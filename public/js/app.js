@@ -5338,6 +5338,43 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
+/***/ "./public/js/front-end.js":
+/*!********************************!*\
+  !*** ./public/js/front-end.js ***!
+  \********************************/
+/***/ (() => {
+
+"use strict";
+
+
+/**
+ * navbar variables
+ */
+var navOpenBtn = document.querySelector("[data-menu-open-btn]");
+var navCloseBtn = document.querySelector("[data-menu-close-btn]");
+var navbar = document.querySelector("[data-navbar]");
+var overlay = document.querySelector("[data-overlay]");
+
+/**
+ * header sticky
+ */
+
+var header = document.querySelector("[data-header]");
+window.addEventListener("scroll", function () {
+  window.scrollY >= 10 ? header.classList.add("active") : header.classList.remove("active");
+});
+
+/**
+ * go top
+ */
+
+var goTopBtn = document.querySelector("[data-go-top]");
+window.addEventListener("scroll", function () {
+  window.scrollY >= 500 ? goTopBtn.classList.add("active") : goTopBtn.classList.remove("active");
+});
+
+/***/ }),
+
 /***/ "./resources/js/Components/Dashboard/Dialog.jsx":
 /*!******************************************************!*\
   !*** ./resources/js/Components/Dashboard/Dialog.jsx ***!
@@ -5510,9 +5547,7 @@ function CreateMovie(_ref) {
       time: '',
       date: '',
       tag: '',
-      comment: '',
-      image: '0',
-      link: ''
+      comment: ''
     }),
     data = _useForm.data,
     setData = _useForm.setData,
@@ -5590,7 +5625,7 @@ function CreateMovie(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            htmlFor: "tag",
+            htmlFor: "date",
             className: "col-form-label",
             children: "Tag:"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -5607,10 +5642,29 @@ function CreateMovie(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            htmlFor: "date",
+            className: "col-form-label",
+            children: "Type:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            name: "type",
+            value: data.type,
+            onChange: onChange,
+            id: "type"
+          }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "text-danger mt-1",
+            children: errors.type
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
             htmlFor: "comment",
             className: "col-form-label",
             children: "Comment:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+            rows: "5",
+            cols: "33",
             type: "text",
             className: "form-control",
             name: "comment",
@@ -5620,23 +5674,6 @@ function CreateMovie(_ref) {
           }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "text-danger mt-1",
             children: errors.comment
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            htmlFor: "link",
-            className: "col-form-label",
-            children: "Link:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "text",
-            className: "form-control",
-            name: "link",
-            value: data.link,
-            onChange: onChange,
-            id: "link"
-          }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "text-danger mt-1",
-            children: errors.link
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "hidden",
@@ -5694,8 +5731,7 @@ function EditMovie(_ref) {
       time: model.time,
       date: model.date,
       tag: model.tag,
-      comment: model.comment,
-      image: model.image
+      comment: model.comment
     }),
     data = _useForm.data,
     setData = _useForm.setData,
@@ -5720,8 +5756,7 @@ function EditMovie(_ref) {
       time: model.time,
       date: model.date,
       tag: model.tag,
-      comment: model.comment,
-      image: model.image
+      comment: model.comment
     }));
   }, [model]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -5803,7 +5838,9 @@ function EditMovie(_ref) {
             htmlFor: "comment",
             className: "col-form-label",
             children: "Comment:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+            rows: "5",
+            cols: "33",
             type: "text",
             className: "form-control",
             name: "comment",
@@ -5956,7 +5993,7 @@ function Sidebar() {
         target: "_blank",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           className: "ms-1 font-weight-bold",
-          children: " Laravel Inertia React Starter"
+          children: " Movie Administator"
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
@@ -6011,6 +6048,21 @@ function Sidebar() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
           className: "nav-item",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+            className: "".concat(route().current('tags.*') && 'active', " nav-link"),
+            href: route('tags.index'),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              className: "icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                className: "fas fa-user-lock text-warning text-sm opacity-10"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "nav-link-text ms-1",
+              children: "Tags"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          className: "nav-item",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
             className: "".concat(route().current('users.*') && 'active', " nav-link"),
             href: route('users.index'),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -6058,6 +6110,231 @@ function Sidebar() {
         })]
       })
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/Components/Dashboard/Tags/CreateTag.jsx":
+/*!**************************************************************!*\
+  !*** ./resources/js/Components/Dashboard/Tags/CreateTag.jsx ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CreateTag)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+function CreateTag(_ref) {
+  var close = _ref.close;
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+      name: '',
+      comment: ''
+    }),
+    data = _useForm.data,
+    setData = _useForm.setData,
+    post = _useForm.post,
+    reset = _useForm.reset,
+    errors = _useForm.errors;
+  var onChange = function onChange(e) {
+    return setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, e.target.id, e.target.value)));
+  };
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    post(route('tags.store'), {
+      data: data,
+      onSuccess: function onSuccess() {
+        reset(), close();
+      }
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+      onSubmit: onSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "modal-body",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            htmlFor: "name",
+            className: "col-form-label",
+            children: "Name:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            name: "name",
+            value: data.name,
+            onChange: onChange,
+            id: "name"
+          }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "text-danger mt-1",
+            children: errors.name
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            htmlFor: "comment",
+            className: "col-form-label",
+            children: "Comment:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+            rows: "5",
+            cols: "33",
+            type: "text",
+            className: "form-control",
+            name: "comment",
+            value: data.comment,
+            onChange: onChange,
+            id: "comment"
+          }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "text-danger mt-1",
+            children: errors.comment
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "hidden",
+          name: "image",
+          value: "0"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "modal-footer",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          type: "button",
+          className: "btn bg-gradient-secondary",
+          "data-bs-dismiss": "modal",
+          children: "Close"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          type: "submit",
+          className: "btn bg-gradient-primary",
+          children: "Save"
+        })]
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/Components/Dashboard/Tags/EditTag.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/Components/Dashboard/Tags/EditTag.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EditTag)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+function EditTag(_ref) {
+  var close = _ref.close,
+    model = _ref.model;
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+      name: model.name,
+      comment: model.comment
+    }),
+    data = _useForm.data,
+    setData = _useForm.setData,
+    put = _useForm.put,
+    reset = _useForm.reset,
+    errors = _useForm.errors;
+  var onChange = function onChange(e) {
+    return setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, e.target.id, e.target.value)));
+  };
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    put(route('tags.update', model.id), {
+      data: data,
+      onSuccess: function onSuccess() {
+        reset(), close();
+      }
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      name: model.name,
+      comment: model.comment
+    }));
+  }, [model]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      onSubmit: onSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "modal-body",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "name",
+            className: "col-form-label",
+            children: "Name:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            name: "name",
+            value: data.name,
+            onChange: onChange,
+            id: "name"
+          }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "text-danger mt-1",
+            children: errors.name
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "comment",
+            className: "col-form-label",
+            children: "Comment:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+            rows: "5",
+            cols: "33",
+            type: "text",
+            className: "form-control",
+            name: "comment",
+            value: "".concat(data.comment || ''),
+            onChange: onChange,
+            id: "comment"
+          }), errors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "text-danger mt-1",
+            children: errors.comment
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "modal-footer",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          type: "button",
+          className: "btn bg-gradient-secondary",
+          "data-bs-dismiss": "modal",
+          children: "Close"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          type: "submit",
+          className: "btn bg-gradient-primary",
+          children: "Update"
+        })]
+      })]
+    })
   });
 }
 
@@ -6373,6 +6650,80 @@ function EditUser(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Components/Dashboard/Users/FavoriteMovie.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/Components/Dashboard/Users/FavoriteMovie.jsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FavoriteMovie)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+function FavoriteMovie(_ref) {
+  var close = _ref.close,
+    model = _ref.model;
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+      id: model.id,
+      name: model.name
+    }),
+    data = _useForm.data,
+    setData = _useForm.setData,
+    put = _useForm.put,
+    reset = _useForm.reset,
+    errors = _useForm.errors;
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    put(route('addfavorite'), {
+      data: data,
+      onSuccess: function onSuccess() {
+        reset(), close();
+      }
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      id: model.id,
+      name: model.name
+    }));
+  }, [model]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+      method: "post",
+      onSubmit: onSubmit,
+      "class": "flex",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        type: "hidden",
+        name: "id",
+        value: data.id
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        type: "button",
+        className: "btn bg-gradient-secondary",
+        "data-bs-dismiss": "modal",
+        children: "Close"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        type: "submit",
+        className: "btn bg-gradient-primary",
+        children: "Add"
+      })]
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/Components/Guest/Navbar.jsx":
 /*!**************************************************!*\
   !*** ./resources/js/Components/Guest/Navbar.jsx ***!
@@ -6554,8 +6905,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dropdown_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dropdown/style.css */ "./node_modules/react-dropdown/style.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_front_end_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../css/front-end.css */ "./public/css/front-end.css");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../js/front-end.js */ "./public/js/front-end.js");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_front_end_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -6565,181 +6919,95 @@ function Navbar(_ref) {
   var props = _ref.props,
     pageName = _ref.pageName;
   var auth = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.auth;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
-    className: "navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl ",
-    id: "navbarBlur",
-    "data-scroll": "false",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-      className: "container-fluid py-1 px-3",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4",
-        id: "navbar",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
-          "aria-label": "breadcrumb",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ol", {
-            className: "breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-              className: "breadcrumb-item text-sm",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-                className: "opacity-5 text-white",
-                href: "#",
-                children: "Logo"
-              })
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "ms-md-auto pe-md-3 d-flex align-items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-              children: ["Search:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "name",
-                placeholder: "Name a movie"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-              type: "submit",
-              className: "btn btn-info mt-1 mb-0",
-              children: "Search"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
-          className: "navbar-nav justify-content-end",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-            className: "nav-item pe-3 d-flex align-items-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
-              className: "nav-link text-white",
-              href: "#",
-              role: "button",
-              "aria-expanded": "false",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-                src: '/avatar/avatars/' + auth.user.avatar + '.jpg',
-                className: "avatar avatar-sm  me-3 "
-              }), auth.user.name]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-            className: "nav-item d-flex align-items-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-              as: "a",
-              method: "post",
-              href: route('logout'),
-              className: "nav-link text-white font-weight-bold px-0",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
-                className: "fa fa-user me-sm-1"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "d-sm-inline d-none",
-                children: "Log out"
-              })]
-            })
-          })]
-        })]
-      })
-    })
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/Components/User/Sidebar.jsx":
-/*!**************************************************!*\
-  !*** ./resources/js/Components/User/Sidebar.jsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Sidebar)
-/* harmony export */ });
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-function Sidebar() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("aside", {
-    className: "sidenav bg-default navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 ",
-    id: "sidenav-main",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "sidenav-header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-        className: "fas fa-times p-3 cursor-pointer opacity-5 position-absolute end-0 top-0 d-none d-xl-none opacity-8 text-white",
-        "aria-hidden": "true",
-        id: "iconSidenav"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-        className: "navbar-brand m-0",
-        href: route('home'),
-        target: "_blank",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-          className: "ms-1 font-weight-bold",
-          children: " Watch Movie free with abc"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("nav", {
+    "class": "navbar",
+    "data-navbar": true,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      "class": "navbar-top",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+        href: "./index.html",
+        "class": "logo",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          src: "./assets/images/logo.svg",
+          alt: "Filmlane logo"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        "class": "menu-close-btn",
+        "data-menu-close-btn": true,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ion-icon", {
+          name: "close-outline"
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
-      className: "horizontal dark mt-0"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "collapse navbar-collapse  w-auto ",
-      id: "sidenav-collapse-main",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
-        className: "navbar-nav",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "nav-item mt-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
-            className: "ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6",
-            children: "List Watch"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+      "class": "navbar-list",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: route('home'),
+          "class": "navbar-link",
+          children: "Home"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: route('movielist'),
+          "class": "navbar-link",
+          children: "Movie"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: "#",
+          "class": "navbar-link",
+          children: "Tv Show"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: route('animelist'),
+          "class": "navbar-link",
+          children: "Anime"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+      "class": "navbar-social-list",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: "#",
+          "class": "navbar-social-link",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ion-icon", {
+            name: "logo-twitter"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-            className: "".concat(route().current('profile') && 'active', " nav-link"),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                className: "ni ni-single-02 text-dark text-sm opacity-10"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              className: "nav-link-text ms-1",
-              children: "Favorite"
-            })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: "#",
+          "class": "navbar-social-link",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ion-icon", {
+            name: "logo-facebook"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-            className: "".concat(route().current('profile') && 'active', " nav-link"),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                className: "ni ni-single-02 text-dark text-sm opacity-10"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              className: "nav-link-text ms-1",
-              children: "History"
-            })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: "#",
+          "class": "navbar-social-link",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ion-icon", {
+            name: "logo-pinterest"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "nav-item mt-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
-            className: "ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6",
-            children: "Manage"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: "#",
+          "class": "navbar-social-link",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ion-icon", {
+            name: "logo-instagram"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-            className: "".concat(route().current('profile') && 'active', " nav-link"),
-            href: route('viewerprofile'),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                className: "fas fa-user-lock text-warning text-sm opacity-10"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              className: "nav-link-text ms-1",
-              children: "Profile"
-            })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          href: "#",
+          "class": "navbar-social-link",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ion-icon", {
+            name: "logo-youtube"
           })
-        })]
-      })
+        })
+      })]
     })]
   });
 }
@@ -6912,9 +7180,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_hot_toast__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-hot-toast */ "./node_modules/react-hot-toast/dist/index.mjs");
 /* harmony import */ var _Components_User_Navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/User/Navbar */ "./resources/js/Components/User/Navbar.jsx");
-/* harmony import */ var _Components_User_Sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/User/Sidebar */ "./resources/js/Components/User/Sidebar.jsx");
-/* harmony import */ var _Components_User_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/User/Footer */ "./resources/js/Components/User/Footer.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Components_User_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/User/Footer */ "./resources/js/Components/User/Footer.jsx");
+/* harmony import */ var _css_front_end_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../css/front-end.css */ "./public/css/front-end.css");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../js/front-end.js */ "./public/js/front-end.js");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_js_front_end_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -6926,22 +7198,102 @@ __webpack_require__.r(__webpack_exports__);
 function Viewer(_ref) {
   var children = _ref.children,
     title = _ref.title;
+  var auth = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.auth;
   var flash = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.flash;
   flash.type && react_hot_toast__WEBPACK_IMPORTED_MODULE_2__["default"][flash.type](flash.message);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    className: "g-sidenav-show bg-gray-100",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "min-height-300 bg-dark position-absolute w-100"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Head, {
-      title: title
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_User_Sidebar__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("main", {
-      className: "main-content position-relative border-radius-lg d-flex flex-column min-vh-100 ",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_User_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        pageName: title
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_hot_toast__WEBPACK_IMPORTED_MODULE_2__.Toaster, {
-        position: "top-center",
-        duration: "4000"
-      }), children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_User_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("header", {
+      "class": "header",
+      "data-header": true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        "class": "container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          "class": "overlay",
+          "data-overlay": true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
+          href: route('index'),
+          "class": "logo",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+            src: "./images/logo.svg",
+            alt: "Filmlane logo"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          "class": "header-actions mt-4",
+          children: auth.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
+            className: "nav-item pe-3 d-flex align-items-center",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("ul", {
+              className: "nav-link text-white",
+              href: "#",
+              role: "button",
+              "aria-expanded": "false",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                src: '/avatar/avatars/' + auth.user.avatar + '.jpg',
+                className: "avatar avatar-sm  me-3 "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                "class": "dropdown",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                  "class": "dropbtn btn btn-primary",
+                  children: auth.user.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  "class": "dropdown-content",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+                    className: "nav-link ",
+                    as: "a",
+                    method: "get",
+                    href: route('viewerprofile'),
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                      className: "nav-link-text ms-1",
+                      children: "Profile"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+                    className: "nav-link ",
+                    as: "a",
+                    method: "get",
+                    href: route('favoritelist'),
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                      className: "nav-link-text ms-1",
+                      children: "Favorite"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+                    className: "nav-link ",
+                    as: "a",
+                    method: "get",
+                    href: route('historylist'),
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                      className: "nav-link-text ms-1",
+                      children: "History"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+                    className: "nav-link ",
+                    as: "a",
+                    method: "post",
+                    href: route('logout'),
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                      className: "nav-link-text ms-1",
+                      children: "Log out"
+                    })
+                  })]
+                })]
+              })]
+            })
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+              "class": "search-btn",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ion-icon", {
+                name: "search-outline"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
+              href: route('login'),
+              "class": "btn btn-primary",
+              children: "Sign in"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_User_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          pageName: title
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("main", {
+      children: children
     })]
   });
 }
@@ -8085,29 +8437,478 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _css_front_end_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../css/front-end.css */ "./public/css/front-end.css");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../js/front-end.js */ "./public/js/front-end.js");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_front_end_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
-function Index() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "card",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "card-body",
-          children: "Your home page"
-        })
+
+
+
+
+function Index(props) {
+  var _props$movies = props.movies,
+    movies = _props$movies.data,
+    links = _props$movies.links,
+    meta = _props$movies.meta;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("main", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("article", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+          "class": "hero",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            "class": "container",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              "class": "hero-content",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                "class": "hero-subtitle",
+                children: "Vioet Evargarder The Movie"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h1", {
+                "class": "h1 hero-title",
+                children: ["Unlimited ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+                  children: "Movie"
+                }), ", TVs Shows, & More."]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                "class": "meta-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  "class": "badge-wrapper",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    "class": "badge badge-fill",
+                    children: "PG 18"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    "class": "badge badge-outline",
+                    children: "HD"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  "class": "ganre-wrapper",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "#",
+                    children: "Anime,"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "#",
+                    children: "Movie"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  "class": "date-time",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                      name: "calendar-outline"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                      datetime: "2022",
+                      children: "2022"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                      name: "time-outline"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                      datetime: "PT128M",
+                      children: "128 min"
+                    })]
+                  })]
+                })]
+              })]
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+          "class": "upcoming",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            "class": "container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              "class": "flex-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                "class": "title-wrapper",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+                  "class": "h2 section-title",
+                  children: "Upcoming Movies"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
+                "class": "filter-list",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    "class": "filter-btn",
+                    children: "Movies"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    "class": "filter-btn",
+                    children: "TV Shows"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    "class": "filter-btn",
+                    children: "Anime"
+                  })
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+              "class": "movies-list  has-scrollbar",
+              children: movies.map(function (movie, index) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    "class": "movie-card",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("figure", {
+                        "class": "card-banner",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                          src: '/storage/movies/' + movie.id + '.jpg',
+                          alt: movie.name
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      "class": "title-wrapper",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                          "class": "card-title",
+                          children: movie.name
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                        datetime: "2022",
+                        children: movie.date
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      "class": "card-meta",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        "class": "badge badge-outline",
+                        children: "HD"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        "class": "duration",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                          name: "time-outline"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                          datetime: "PT107M",
+                          children: movie.time
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        "class": "rating",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                          name: "star"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("data", {
+                          children: "NR"
+                        })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+                      mothod: "get",
+                      action: "moviedetail",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                        type: "hidden",
+                        name: "id",
+                        value: movie.id
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                        type: "submit",
+                        "class": "btn btn-primary mt-3",
+                        value: "View"
+                      })]
+                    })]
+                  })
+                });
+              })
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+          "class": "service",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            "class": "container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              "class": "service-banner",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("figure", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                  src: "../storage/movies/4.jpg",
+                  alt: "HD 4k resolution! only $3.99"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                href: "../storage/movies/4.jpg",
+                download: true,
+                "class": "service-btn",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  children: "Download"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                  name: "download-outline"
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              "class": "service-content",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                "class": "service-subtitle",
+                children: "Our Services"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+                "class": "h2 service-title",
+                children: "Download Your Shows Watch Offline."
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                "class": "service-text",
+                children: "Lorem ipsum dolor sit amet, consecetur adipiscing elseddo eiusmod tempor.There are many variations of passages of lorem Ipsum available, but the majority have suffered alteration in some injected humour."
+              })]
+            })]
+          })
+        })]
       })
     })
   });
 }
 Index.layout = function (page) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: page,
     title: "Index"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Movies/AnimeList.jsx":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Movies/AnimeList.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AnimeList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _css_front_end_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../css/front-end.css */ "./public/css/front-end.css");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../js/front-end.js */ "./public/js/front-end.js");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_front_end_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+function AnimeList(props) {
+  var _props$animes = props.animes,
+    animes = _props$animes.data,
+    links = _props$animes.links,
+    meta = _props$animes.meta;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("main", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("article", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+          "class": "tv-series",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            "class": "container",
+            style: {
+              marginBlock: "20px"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              "class": "title-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+                "class": "h3 section-title",
+                children: "Anime list"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+              "class": "movies-list",
+              children: animes.map(function (anime, index) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    "class": "movie-card",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("figure", {
+                        "class": "card-banner",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                          src: '/storage/movies/' + anime.id + '.jpg',
+                          alt: anime.name
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      "class": "title-wrapper",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                          "class": "card-title",
+                          children: anime.name
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                        datetime: "2022",
+                        children: anime.date
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      "class": "card-meta",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        "class": "badge badge-outline",
+                        children: "HD"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        "class": "duration",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                          name: "time-outline"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                          datetime: "PT107M",
+                          children: anime.time
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        "class": "rating",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                          name: "star"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("data", {
+                          children: "NR"
+                        })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+                      mothod: "get",
+                      action: "moviedetail",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                        type: "hidden",
+                        name: "id",
+                        value: anime.id
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                        type: "submit",
+                        "class": "btn btn-primary mt-3",
+                        value: "View"
+                      })]
+                    })]
+                  })
+                });
+              })
+            })]
+          })
+        })
+      })
+    })
+  });
+}
+AnimeList.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page,
+    title: "Anime List"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Movies/Content.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Movies/Content.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Content)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+function Content(props) {
+  var _props$movie = props.movie,
+    movie = _props$movie.data,
+    links = _props$movie.links,
+    meta = _props$movie.meta;
+  var movies = props.movies.data;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
+        "class": "movie-detail",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          "class": "container",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            "class": "movie-detail-content",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              "class": "h3 detail-title",
+              children: movie.name
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("video", {
+          "class": "container float-left",
+          controls: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("source", {
+            src: '/storage/videos/' + movie.id + '.mp4',
+            type: "video/mp4"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          "class": "flex-wrapper",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            "class": "title-wrapper",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+              "class": "h2 section-title",
+              children: "Related Movies"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+            "class": "movies-list  has-scrollbar",
+            children: movies.map(function (one, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  "class": "movie-card",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("figure", {
+                      "class": "card-banner",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                        src: '/storage/movies/' + one.id + '.jpg',
+                        alt: one.name
+                      })
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    "class": "title-wrapper",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+                        "class": "card-title",
+                        children: one.name
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("time", {
+                      datetime: "2022",
+                      children: one.date
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    "class": "card-meta",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      "class": "badge badge-outline",
+                      children: "HD"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      "class": "duration",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ion-icon", {
+                        name: "time-outline"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("time", {
+                        datetime: "PT107M",
+                        children: one.time
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      "class": "rating",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ion-icon", {
+                        name: "star"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("data", {
+                        children: "NR"
+                      })]
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                    mothod: "get",
+                    action: "moviedetail",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "hidden",
+                      name: "id",
+                      value: one.id
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "submit",
+                      "class": "btn btn-primary mt-3",
+                      value: "View"
+                    })]
+                  })]
+                })
+              });
+            })
+          })]
+        })]
+      })
+    })
+  });
+}
+Content.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page,
+    title: "Watch"
   });
 };
 
@@ -8284,8 +9085,8 @@ function Index(props) {
                         className: "text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2",
                         children: "Tag"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("th", {
-                        className: "text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2",
-                        children: "Comment"
+                        className: "text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2",
+                        children: "Type"
                       })]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("tbody", {
@@ -8311,6 +9112,10 @@ function Index(props) {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
                               src: '/storage/movies/' + movie.id + '.jpg',
+                              style: {
+                                height: "200px",
+                                width: "300px"
+                              },
                               className: "img-thumbnail"
                             })
                           })
@@ -8341,7 +9146,7 @@ function Index(props) {
                             className: "d-flex align-items-center text-left",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
                               className: "text-xs font-weight-bold mb-0",
-                              children: movie.comment
+                              children: movie.type
                             })
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
@@ -8349,49 +9154,17 @@ function Index(props) {
                           width: "10%",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
-                              action: route('moviedetail.upload'),
-                              method: "POST",
-                              enctype: "multipart/form-data",
+                              action: "editmovie",
+                              method: "get",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                                 type: "hidden",
-                                name: "_token",
-                                value: "{{ csrf_token() }}"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
-                                type: "hidden",
-                                name: "movieid",
+                                name: "id",
                                 value: movie.id
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-                                className: "form-group",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
-                                  htmlFor: "image",
-                                  className: "form-control-label",
-                                  children: "Change thumnail"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
-                                  className: "btn btn-primary",
-                                  type: "file",
-                                  name: "image",
-                                  onChange: function onChange(event) {
-                                    console.log(event.target.files[0]);
-                                    setSelectedImage(event.target.files[0]);
-                                  }
-                                })]
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                                 type: "submit",
-                                className: "btn btn-primary btn-sm ms-auto",
-                                children: "Upload"
+                                className: "btn btn-vimeo",
+                                value: "Edit"
                               })]
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
-                              type: "button",
-                              onClick: function onClick() {
-                                return openUpdateDialog(movie);
-                              },
-                              className: "btn btn-vimeo btn-icon-only mx-2",
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
-                                className: "btn-inner--icon",
-                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
-                                  className: "fas fa-pencil-alt"
-                                })
-                              })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
                               type: "button",
                               onClick: function onClick() {
@@ -8443,6 +9216,1158 @@ Index.layout = function (page) {
     children: page,
     title: "Manage Movie"
   }, page);
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Movies/MovieList.jsx":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Movies/MovieList.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MovieList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _css_front_end_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../css/front-end.css */ "./public/css/front-end.css");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../js/front-end.js */ "./public/js/front-end.js");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_front_end_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+function MovieList(props) {
+  var _props$movies = props.movies,
+    movies = _props$movies.data,
+    links = _props$movies.links,
+    meta = _props$movies.meta;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("main", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("article", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+          "class": "tv-series",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            "class": "container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              "class": "title-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+                "class": "h3 section-title",
+                children: "List Movies"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+              "class": "movies-list",
+              children: movies.map(function (movie, index) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    "class": "movie-card",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("figure", {
+                        "class": "card-banner",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                          src: '/storage/movies/' + movie.id + '.jpg',
+                          alt: movie.name
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      "class": "title-wrapper",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                          "class": "card-title",
+                          children: movie.name
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                        datetime: "2022",
+                        children: movie.date
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      "class": "card-meta",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        "class": "badge badge-outline",
+                        children: "HD"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        "class": "duration",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                          name: "time-outline"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("time", {
+                          datetime: "PT107M",
+                          children: movie.time
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        "class": "rating",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ion-icon", {
+                          name: "star"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("data", {
+                          children: "NR"
+                        })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+                      mothod: "get",
+                      action: "moviedetail",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                        type: "hidden",
+                        name: "id",
+                        value: movie.id
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                        type: "submit",
+                        "class": "btn btn-primary mt-3",
+                        value: "View"
+                      })]
+                    })]
+                  })
+                });
+              })
+            })]
+          })
+        })
+      })
+    })
+  });
+}
+MovieList.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page,
+    title: "MovieList"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Movies/Moviedetail.jsx":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Movies/Moviedetail.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Moviedetail)
+/* harmony export */ });
+/* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
+/* harmony import */ var _Components_Dashboard_Dialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Dashboard/Dialog */ "./resources/js/Components/Dashboard/Dialog.jsx");
+/* harmony import */ var _css_front_end_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../css/front-end.css */ "./public/css/front-end.css");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../js/front-end.js */ "./public/js/front-end.js");
+/* harmony import */ var _js_front_end_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_front_end_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Hooks_useDialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Hooks/useDialog */ "./resources/js/Hooks/useDialog.jsx");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _Components_Dashboard_Users_FavoriteMovie__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Components/Dashboard/Users/FavoriteMovie */ "./resources/js/Components/Dashboard/Users/FavoriteMovie.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+function Moviedetail(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_6__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    state = _useState2[0],
+    setState = _useState2[1];
+  var _useDialog = (0,_Hooks_useDialog__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    _useDialog2 = _slicedToArray(_useDialog, 3),
+    UpdateDialogHandler = _useDialog2[0],
+    UpdateCloseTrigger = _useDialog2[1],
+    UpdateTrigger = _useDialog2[2];
+  var _props$movie = props.movie,
+    movie = _props$movie.data,
+    links = _props$movie.links,
+    meta = _props$movie.meta;
+  var openUpdateDialog = function openUpdateDialog(movie) {
+    setState(movie);
+    UpdateDialogHandler();
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Dashboard_Dialog__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      trigger: UpdateTrigger,
+      title: "Add to favorite Movie: ".concat(state.name),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Dashboard_Users_FavoriteMovie__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        model: state,
+        close: UpdateCloseTrigger
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("article", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("section", {
+        "class": "movie-detail",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          "class": "container",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("figure", {
+            "class": "movie-detail-banner",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+              src: '/storage/movies/' + movie.id + '.jpg',
+              alt: "Free guy movie poster"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+              "class": "play-btn",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ion-icon", {
+                name: "play-circle-outline"
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            "class": "movie-detail-content",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
+              "class": "h1 detail-title",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("strong", {
+                children: movie.name
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              "class": "meta-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                "class": "badge-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  "class": "badge badge-fill",
+                  children: "PG 13"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  "class": "badge badge-outline",
+                  children: "HD"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                "class": "ganre-wrapper",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+                  href: "#",
+                  children: movie.tag
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                "class": "date-time",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ion-icon", {
+                    name: "calendar-outline"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("time", {
+                    datetime: "2021",
+                    children: movie.date
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ion-icon", {
+                    name: "time-outline"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("time", {
+                    datetime: "PT115M",
+                    children: movie.time
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+              "class": "storyline",
+              children: movie.comment
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              "class": "details-actions",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                "class": "title-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+                  "class": "title",
+                  children: "Prime Video"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+                  "class": "text",
+                  children: "Streaming Channels"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
+                mothod: "get",
+                action: "watch",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
+                  type: "hidden",
+                  name: "id",
+                  value: movie.id
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
+                  type: "hidden",
+                  name: "tag",
+                  value: movie.tag
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
+                  type: "submit",
+                  "class": "btn btn-primary mt-3",
+                  value: "Watch now"
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+              download: true,
+              "class": "download-btn",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+                type: "button",
+                onClick: function onClick() {
+                  return openUpdateDialog(movie);
+                },
+                className: "btn btn-primary",
+                children: "Add to Favorite"
+              })
+            })]
+          })]
+        })
+      })
+    })]
+  });
+}
+Moviedetail.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    children: page,
+    title: "Watch"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Movies/Profile.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Movies/Profile.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Profile)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/Base */ "./resources/js/Layouts/Base.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function Profile(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedImage = _useState2[0],
+    setSelectedImage = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedVideo = _useState4[0],
+    setSelectedVideo = _useState4[1];
+  var _props$movie = props.movie,
+    movie = _props$movie.data,
+    links = _props$movie.links,
+    meta = _props$movie.meta;
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+      name: movie.name,
+      time: movie.time,
+      date: movie.date,
+      tag: movie.tag,
+      type: movie.type,
+      comment: movie.comment
+    }),
+    data = _useForm.data,
+    setData = _useForm.setData,
+    put = _useForm.put,
+    reset = _useForm.reset,
+    errors = _useForm.errors;
+  var onChange = function onChange(e) {
+    return setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, e.target.id, e.target.value)));
+  };
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    put(route('movies.update', movie.id), {
+      data: data,
+      onSuccess: function onSuccess() {}
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "card shadow-lg mx-4 my-3",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "card-body p-3",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "row gx-4",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "col-auto",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "avatar avatar-xl position-relative",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                  src: '/storage/movies/' + movie.id + '.jpg',
+                  alt: "profile_image",
+                  className: "w-100 border-radius-lg shadow-sm"
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "col-auto my-auto",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "h-100",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
+                  className: "mb-1",
+                  children: data.name
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                action: route('uploadmovieimage'),
+                method: "POST",
+                enctype: "multipart/form-data",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "hidden",
+                  name: "id",
+                  value: movie.id
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "hidden",
+                  name: "_token",
+                  value: "{{ csrf_token() }}"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-md-6 ",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "form-group",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                      htmlFor: "avatar",
+                      className: "form-control-label",
+                      children: "Change Thumnail"
+                    }), selectedImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                        alt: "not fount",
+                        width: "250px",
+                        src: URL.createObjectURL(selectedImage)
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                        className: "btn btn-primary mt-3",
+                        onClick: function onClick() {
+                          return setSelectedImage(null);
+                        },
+                        children: "Remove"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      className: "btn btn-primary",
+                      type: "file",
+                      name: "image",
+                      onChange: function onChange(event) {
+                        console.log(event.target.files[0]);
+                        setSelectedImage(event.target.files[0]);
+                      }
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "d-flex align-items-center",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "submit",
+                      className: "btn btn-primary btn-sm ms-auto",
+                      value: "Upload"
+                    })
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                action: route('uploadvideo'),
+                method: "POST",
+                enctype: "multipart/form-data",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "hidden",
+                  name: "id",
+                  value: movie.id
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "hidden",
+                  name: "_token",
+                  value: "{{ csrf_token() }}"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-md-6 ",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "form-group",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                      htmlFor: "video",
+                      className: "form-control-label",
+                      children: "Upload Video"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      className: "btn btn-primary",
+                      type: "file",
+                      name: "video"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "d-flex align-items-center",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                      type: "submit",
+                      className: "btn btn-primary btn-sm ms-auto",
+                      children: "Upload"
+                    })
+                  })]
+                })]
+              })
+            })]
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "container-fluid py-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "row",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "col-md-8",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "card",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                enctype: "multipart/form-data",
+                onSubmit: onSubmit,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "card-header pb-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "d-flex align-items-center",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                      className: "mb-0",
+                      children: "Edit Movie"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                      type: "submit",
+                      className: "btn btn-primary btn-sm ms-auto",
+                      children: "Save"
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "card-body",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                    className: "text-uppercase text-sm",
+                    children: "Movie Information"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "row",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "col-md-6",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "form-group",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                          htmlFor: "name",
+                          className: "form-control-label",
+                          children: "Name"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          className: "form-control",
+                          type: "text",
+                          name: "name",
+                          value: data.name,
+                          onChange: onChange,
+                          id: "name"
+                        })]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "col-md-6",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "form-group",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                          htmlFor: "time",
+                          className: "form-control-label",
+                          children: "Time"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          className: "form-control",
+                          type: "text",
+                          name: "time",
+                          value: data.time,
+                          onChange: onChange,
+                          id: "time"
+                        })]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "col-md-12",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "form-group",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                          htmlFor: "date",
+                          className: "form-control-label",
+                          children: "Date"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          className: "form-control",
+                          type: "date",
+                          name: "date",
+                          value: data.date,
+                          onChange: onChange,
+                          id: "date"
+                        })]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "col-md-12",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "form-group",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                          htmlFor: "tag",
+                          className: "form-control-label",
+                          children: "Tag"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          className: "form-control",
+                          type: "text",
+                          name: "tag",
+                          value: data.tag,
+                          onChange: onChange,
+                          id: "tag"
+                        })]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "col-md-12",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "form-group",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                          htmlFor: "type",
+                          className: "form-control-label",
+                          children: "Type"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          className: "form-control",
+                          type: "text",
+                          name: "type",
+                          value: data.type,
+                          onChange: onChange,
+                          id: "type"
+                        })]
+                      })
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {
+                    className: "horizontal dark"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "row",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "col-md-12",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "form-group",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                          htmlFor: "description",
+                          className: "form-control-label",
+                          children: "Description"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+                          className: "form-control",
+                          type: "text",
+                          name: "description",
+                          value: data.comment,
+                          onChange: onChange,
+                          id: "address"
+                        })]
+                      })
+                    })
+                  })]
+                })]
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "col-md-4",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "card card-profile pb-7",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                src: "/img/bg-profile.jpg",
+                alt: "Image placeholder",
+                className: "card-img-top"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "row justify-content-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-4 col-lg-4 order-lg-2",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "mt-n4 mt-lg-n6 mb-4 mb-lg-0",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                      href: "javascript:;",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                        src: '/storage/movies/' + movie.id,
+                        className: "rounded-circle img-fluid border border-2 border-white"
+                      })
+                    })
+                  })
+                })
+              })]
+            })
+          })]
+        })
+      })]
+    })
+  });
+}
+Profile.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layouts_Base__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page,
+    title: "Profile"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Tags/Index.jsx":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Tags/Index.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Index)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Components_Dashboard_Dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Dashboard/Dialog */ "./resources/js/Components/Dashboard/Dialog.jsx");
+/* harmony import */ var _Layouts_Base__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Layouts/Base */ "./resources/js/Layouts/Base.jsx");
+/* harmony import */ var _Hooks_useDialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Hooks/useDialog */ "./resources/js/Hooks/useDialog.jsx");
+/* harmony import */ var _Components_Dashboard_Tags_CreateTag__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Components/Dashboard/Tags/CreateTag */ "./resources/js/Components/Dashboard/Tags/CreateTag.jsx");
+/* harmony import */ var _Components_Dashboard_Tags_EditTag__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/Dashboard/Tags/EditTag */ "./resources/js/Components/Dashboard/Tags/EditTag.jsx");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+function Index(props) {
+  var _props$tags = props.tags,
+    tags = _props$tags.data,
+    links = _props$tags.links,
+    meta = _props$tags.meta;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    state = _useState2[0],
+    setState = _useState2[1];
+  var _useDialog = (0,_Hooks_useDialog__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    _useDialog2 = _slicedToArray(_useDialog, 3),
+    addDialogHandler = _useDialog2[0],
+    addCloseTrigger = _useDialog2[1],
+    addTrigger = _useDialog2[2];
+  var _useDialog3 = (0,_Hooks_useDialog__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    _useDialog4 = _slicedToArray(_useDialog3, 3),
+    UpdateDialogHandler = _useDialog4[0],
+    UpdateCloseTrigger = _useDialog4[1],
+    UpdateTrigger = _useDialog4[2];
+  var _useDialog5 = (0,_Hooks_useDialog__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    _useDialog6 = _slicedToArray(_useDialog5, 3),
+    destroyDialogHandler = _useDialog6[0],
+    destroyCloseTrigger = _useDialog6[1],
+    destroyTrigger = _useDialog6[2];
+  var openUpdateDialog = function openUpdateDialog(tag) {
+    setState(tag);
+    UpdateDialogHandler();
+  };
+  var openDestroyDialog = function openDestroyDialog(tag) {
+    setState(tag);
+    destroyDialogHandler();
+  };
+  var destroyTag = function destroyTag() {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia["delete"](route('tags.destroy', state.id), {
+      onSuccess: function onSuccess() {
+        return destroyCloseTrigger();
+      }
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      className: "container-fluid py-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Dashboard_Dialog__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        trigger: addTrigger,
+        title: "Create New Tag",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Dashboard_Tags_CreateTag__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          close: addCloseTrigger
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Dashboard_Dialog__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        trigger: UpdateTrigger,
+        title: "Update Tag: ".concat(state.name),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Dashboard_Tags_EditTag__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          model: state,
+          close: UpdateCloseTrigger
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Components_Dashboard_Dialog__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        trigger: destroyTrigger,
+        title: "Delete Tag: ".concat(state.name),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "Are you sure to delete this tag ?"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "modal-footer",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+            type: "button",
+            className: "btn bg-gradient-secondary",
+            "data-bs-dismiss": "modal",
+            children: "Close"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+            type: "submit",
+            onClick: destroyTag,
+            className: "btn bg-gradient-danger",
+            children: "Delete"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "row pb-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          className: "col-12 w-100",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+            className: "card h-100 w-100",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              className: "card-header pb-0",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                  className: "col-md-6",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h6", {
+                    children: "Tags table"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                  className: "col-md-6 d-flex justify-content-end",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+                    onClick: addDialogHandler,
+                    type: "button",
+                    className: "btn bg-gradient-success btn-block mb-3",
+                    "data-bs-toggle": "modal",
+                    "data-bs-target": "#exampleModalMessage",
+                    children: "Create New Tag"
+                  })
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              className: "card-body px-0 pt-0 pb-2",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                className: "table-responsive-xxl p-0",
+                width: "100%",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("table", {
+                  className: "table align-items-center justify-content-center mb-0",
+                  width: "100%",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("thead", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("th", {
+                        className: "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-centter",
+                        children: "#"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("th", {
+                        className: "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left",
+                        children: "Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("th", {
+                        className: "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left",
+                        children: "Comment"
+                      })]
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("tbody", {
+                    children: tags.map(function (tag, index) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("tr", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                          className: "text-center",
+                          children: meta.from + index
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                          className: "text-left",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+                            className: "text-sm font-weight-bold mb-0",
+                            children: tag.name
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                          className: "text-left",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                            className: "text-xs font-weight-bold",
+                            children: tag.comment
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                          className: "align-middle text-center",
+                          width: "10%",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+                              type: "button",
+                              onClick: function onClick() {
+                                return openUpdateDialog(tag);
+                              },
+                              className: "btn btn-vimeo btn-icon-only mx-2",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                                className: "btn-inner--icon",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+                                  className: "fas fa-pencil-alt"
+                                })
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+                              type: "button",
+                              onClick: function onClick() {
+                                return openDestroyDialog(tag);
+                              },
+                              className: "btn btn-youtube btn-icon-only",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                                className: "btn-inner--icon",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+                                  className: "fas fa-trash"
+                                })
+                              })
+                            })]
+                          })
+                        })]
+                      }, tag.id);
+                    })
+                  })]
+                })
+              })
+            })]
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("nav", {
+        "aria-label": "Page navigation example",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("ul", {
+          className: "pagination justify-content-center",
+          children: meta.links.map(function (link, k) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("li", {
+              className: "page-item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+                disabled: link.url == null ? true : false,
+                as: "button",
+                className: "".concat(link.active && 'bg-info', " ").concat(link.url == null && 'btn bg-gradient-secondary text-white', " page-link"),
+                href: link.url || '',
+                dangerouslySetInnerHTML: {
+                  __html: link.label
+                }
+              })
+            }, k);
+          })
+        })
+      })]
+    })
+  });
+}
+Index.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Layouts_Base__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: page,
+    title: "Manage Tags"
+  }, page);
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Users/FavoriteList.jsx":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Users/FavoriteList.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FavoriteList)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+function FavoriteList(props) {
+  var movies = props.movies;
+  console.log(movies);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("main", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+          "class": "tv-series",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            "class": "container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              "class": "title-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+                "class": "h3 section-title",
+                children: "Your Favorite List"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
+              "class": "movies-list ",
+              children: [movies.map(function (movie, index) {
+                return movie.map(function (item, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      "class": "movie-card",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("figure", {
+                          "class": "card-banner",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                            src: '/storage/movies/' + item.id + '.jpg',
+                            alt: movie.name
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        "class": "title-wrapper",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h3", {
+                            "class": "card-title",
+                            children: [" ", item.name]
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("time", {
+                          datetime: "2022",
+                          children: item.date
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        "class": "card-meta",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                          "class": "badge badge-outline",
+                          children: "HD"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          "class": "duration",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ion-icon", {
+                            name: "time-outline"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("time", {
+                            datetime: "PT107M",
+                            children: item.time
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          "class": "rating",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ion-icon", {
+                            name: "star"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("data", {
+                            children: "NR"
+                          })]
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                        mothod: "get",
+                        action: "moviedetail",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          type: "hidden",
+                          name: "id",
+                          value: item.id
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          type: "submit",
+                          "class": "btn btn-primary mt-3",
+                          value: "View"
+                        })]
+                      })]
+                    })
+                  });
+                });
+              }), ";"]
+            })]
+          })
+        })
+      })
+    })
+  });
+}
+FavoriteList.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page,
+    title: "Favorite List"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Users/HistoryList.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/Pages/Users/HistoryList.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ HistoryList)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/Viewer */ "./resources/js/Layouts/Viewer.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+function HistoryList(props) {
+  var movies = props.movies;
+  console.log(movies);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("main", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+          "class": "tv-series",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            "class": "container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              "class": "title-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+                "class": "h3 section-title",
+                children: "Your History List"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
+              "class": "movies-list ",
+              children: [movies.map(function (movie, index) {
+                return movie.map(function (item, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      "class": "movie-card",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("figure", {
+                          "class": "card-banner",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                            src: '/storage/movies/' + item.id + '.jpg',
+                            alt: movie.name
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        "class": "title-wrapper",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h3", {
+                            "class": "card-title",
+                            children: [" ", item.name]
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("time", {
+                          datetime: "2022",
+                          children: item.date
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        "class": "card-meta",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                          "class": "badge badge-outline",
+                          children: "HD"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          "class": "duration",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ion-icon", {
+                            name: "time-outline"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("time", {
+                            datetime: "PT107M",
+                            children: item.time
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          "class": "rating",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ion-icon", {
+                            name: "star"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("data", {
+                            children: "NR"
+                          })]
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                        mothod: "get",
+                        action: "moviedetail",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          type: "hidden",
+                          name: "id",
+                          value: item.id
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                          type: "submit",
+                          "class": "btn btn-primary mt-3",
+                          value: "View"
+                        })]
+                      })]
+                    })
+                  });
+                });
+              }), ";"]
+            })]
+          })
+        })
+      })
+    })
+  });
+}
+HistoryList.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layouts_Viewer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page,
+    title: "History List"
+  });
 };
 
 /***/ }),
@@ -9076,8 +11001,8 @@ function ViewerProfile(props) {
       onSuccess: function onSuccess() {}
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "card shadow-lg mx-4 my-3",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -9294,7 +11219,7 @@ function ViewerProfile(props) {
           })]
         })
       })]
-    })
+    })]
   });
 }
 ViewerProfile.layout = function (page) {
@@ -14677,10 +16602,10 @@ if ($defineProperty) {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/react-dropdown/style.css":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/react-dropdown/style.css ***!
-  \*********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./public/css/front-end.css":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./public/css/front-end.css ***!
+  \********************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -14688,13 +16613,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _storage_app_public_movies_4_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../storage/app/public/movies/4.jpg */ "./storage/app/public/movies/4.jpg");
+/* harmony import */ var _images_upcoming_bg_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/upcoming-bg.png */ "./public/images/upcoming-bg.png");
+/* harmony import */ var _images_service_bg_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../images/service-bg.jpg */ "./public/images/service-bg.jpg");
+/* harmony import */ var _images_top_rated_bg_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../images/top-rated-bg.jpg */ "./public/images/top-rated-bg.jpg");
+/* harmony import */ var _images_tv_series_bg_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../images/tv-series-bg.jpg */ "./public/images/tv-series-bg.jpg");
+/* harmony import */ var _images_cta_bg_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../images/cta-bg.jpg */ "./public/images/cta-bg.jpg");
+/* harmony import */ var _images_footer_bg_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../images/footer-bg.jpg */ "./public/images/footer-bg.jpg");
+/* harmony import */ var _images_movie_detail_bg_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../images/movie-detail-bg.png */ "./public/images/movie-detail-bg.png");
 // Imports
 
-var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+
+
+
+
+
+
+
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_storage_app_public_movies_4_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_upcoming_bg_png__WEBPACK_IMPORTED_MODULE_3__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_2___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_service_bg_jpg__WEBPACK_IMPORTED_MODULE_4__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_3___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_top_rated_bg_jpg__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_4___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_tv_series_bg_jpg__WEBPACK_IMPORTED_MODULE_6__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_5___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_cta_bg_jpg__WEBPACK_IMPORTED_MODULE_7__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_6___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_footer_bg_jpg__WEBPACK_IMPORTED_MODULE_8__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_7___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_movie_detail_bg_png__WEBPACK_IMPORTED_MODULE_9__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Dropdown-root {\n  position: relative;\n}\n\n.Dropdown-control {\n  position: relative;\n  overflow: hidden;\n  background-color: white;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  box-sizing: border-box;\n  color: #333;\n  cursor: default;\n  outline: none;\n  padding: 8px 52px 8px 10px;\n  transition: all 200ms ease;\n}\n\n.Dropdown-control:hover {\n  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);\n}\n\n.Dropdown-arrow {\n  border-color: #999 transparent transparent;\n  border-style: solid;\n  border-width: 5px 5px 0;\n  content: ' ';\n  display: block;\n  height: 0;\n  margin-top: -ceil(2.5);\n  position: absolute;\n  right: 10px;\n  top: 14px;\n  width: 0\n}\n\n.is-open .Dropdown-arrow {\n  border-color: transparent transparent #999;\n  border-width: 0 5px 5px;\n}\n\n.Dropdown-menu {\n  background-color: white;\n  border: 1px solid #ccc;\n  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);\n  box-sizing: border-box;\n  margin-top: -1px;\n  max-height: 200px;\n  overflow-y: auto;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1000;\n  -webkit-overflow-scrolling: touch;\n}\n\n.Dropdown-menu .Dropdown-group > .Dropdown-title{\n  padding: 8px 10px;\n  color: rgba(51, 51, 51, 1);\n  font-weight: bold;\n  text-transform: capitalize;\n}\n\n.Dropdown-option {\n  box-sizing: border-box;\n  color: rgba(51, 51, 51, 0.8);\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n}\n\n.Dropdown-option:last-child {\n  border-bottom-right-radius: 2px;\n   border-bottom-left-radius: 2px;\n}\n\n.Dropdown-option:hover {\n  background-color: #f2f9fc;\n  color: #333;\n}\n\n.Dropdown-option.is-selected {\n  background-color: #f2f9fc;\n  color: #333;\n}\n\n.Dropdown-noresults {\n  box-sizing: border-box;\n  color: #ccc;\n  cursor: default;\n  display: block;\n  padding: 8px 10px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/*-----------------------------------*\\\n * #style.css\n\\*-----------------------------------*/\n\n/**\n * copyright 2022 @codewithsadee\n */\n\n\n\n\n\n/*-----------------------------------*\\\n * #CUSTOM PROPERTY\n\\*-----------------------------------*/\n\n:root {\n\n  /**\n   * colors\n   */\n\n  --rich-black-fogra-29: hsl(225, 25%, 9%);\n  --rich-black-fogra-39: hsl(170, 21%, 5%);\n  --raisin-black: hsl(228, 13%, 15%);\n  --eerie-black: hsl(207, 19%, 11%);\n  --light-gray: hsl(0, 10%, 14%);\n  --gunmetal-1: hsl(229, 15%, 21%);\n  --gunmetal-2: hsl(216, 22%, 18%);\n  --gainsboro: hsl(0, 7%, 88%);\n  --citrine: hsl(57, 97%, 45%);\n  --xiketic: hsl(253, 21%, 13%);\n  --gray-x: hsl(0, 13%, 13%);\n  --white: hsl(0, 100%, 100%);\n  --black: hsl(0, 0%, 0%);\n  --jet: hsl(0, 0%, 20%);\n\n  /**\n   * typography\n   */\n\n  --ff-poppins: 'Poppins', sans-serif;\n\n  --fs-1: 36px;\n  --fs-2: 32px;\n  --fs-3: 30px;\n  --fs-4: 24px;\n  --fs-5: 20px;\n  --fs-6: 18px;\n  --fs-7: 16px;\n  --fs-8: 15px;\n  --fs-9: 14px;\n  --fs-10: 13px;\n  --fs-11: 12px;\n  --fs-12: 11px;\n\n  --fw-500: 500;\n  --fw-700: 700;\n\n  /**\n   * transition\n   */\n\n  --transition-1: 0.15s ease;\n  --transition-2: 0.25s ease-in;\n\n  /**\n   * spacing\n   */\n\n  --section-padding: 100px;\n\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #RESET\n\\*-----------------------------------*/\n\n/* Style The Dropdown Button */\n.dropbtn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px;\n  font-size: 16px;\n  border: none;\n  cursor: pointer;\n}\n\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\n  position: relative;\n  display: inline-block;\n}\n\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n  z-index: 1;\n}\n\n/* Links inside the dropdown */\n.dropdown-content a {\n  color: black;\n  padding: 12px 16px;\n  text-decoration: none;\n  display: block;\n}\n\n/* Change color of dropdown links on hover */\n.dropdown-content a:hover {background-color: #f1f1f1}\n\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\n  display: block;\n}\n\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\n  background-color: #3e8e41;\n}\n\n*, *::before, *::after {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nli { list-style: none; }\n\na { text-decoration: none; }\n\na,\nimg,\nspan,\ninput,\nbutton,\nion-icon { display: block; }\n\ninput {\n  font: inherit;\n  width: 100%;\n  border: none;\n}\n\nselect,\nbutton {\n  font: inherit;\n  background: none;\n  border: none;\n  cursor: pointer;\n}\n\nhtml {\n  font-family: var(--ff-poppins);\n  scroll-behavior: smooth;\n}\n\nbody { background: var(--eerie-black); }\n\nbody.active { overflow: hidden; }\n\n\n\n\n\n/*-----------------------------------*\\\n * #REUSED STYLE\n\\*-----------------------------------*/\n\n.container { padding-inline: 15px; }\n\n/**\n * TITLES & SUBTITLES\n */\n\n.h1,\n.h2,\n.h3 {\n  color: var(--white);\n  line-height: 1.2;\n}\n\n.h1 { font-size: var(--fs-1); }\n\n.h2 { font-size: var(--fs-2); }\n\n.h3 { font-size: var(--fs-6); }\n\n.section-subtitle {\n  color: var(--citrine);\n  font-size: var(--fs-11);\n  font-weight: var(--fw-500);\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  margin-bottom: 10px;\n  text-align: center;\n}\n\n.section-title { text-align: center; }\n\n/**\n * BADGE\n */\n\n.badge {\n  color: var(--white);\n  font-size: var(--fs-12);\n  font-weight: var(--fw-700);\n  border: 2px solid transparent;\n  padding: 2px 10px;\n}\n\n.badge-fill {\n  background: var(--white);\n  color: var(--raisin-black);\n}\n\n.badge-outline { border-color: var(--white); }\n\n/**\n * MOVIE META\n */\n\n.meta-wrapper {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  align-items: center;\n  gap: 15px 25px;\n  margin-bottom: 50px;\n}\n\n.badge-wrapper,\n.ganre-wrapper,\n.date-time {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 5px 10px;\n}\n\n.ganre-wrapper > a {\n  color: var(--gainsboro);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-500);\n  transition: var(--transition-1);\n}\n\n.ganre-wrapper > a:is(:hover, :focus) { color: var(--citrine); }\n\n.date-time { gap: 15px; }\n\n.date-time > div {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  color: var(--gainsboro);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-500);\n}\n\n.date-time ion-icon {\n  --ionicon-stroke-width: 50px;\n  color: var(--citrine);\n}\n\n/**\n * BUTTONS\n */\n\n.btn {\n  color: var(--white);\n  font-size: var(--fs-11);\n  font-weight: var(--fw-700);\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 16px 30px;\n  border: 2px solid var(--citrine);\n  border-radius: 50px;\n  transition: var(--transition-1);\n}\n\n.btn > ion-icon { font-size: 18px; }\n\n.btn-primary { background: var(--rich-black-fogra-29); }\n\n.btn-primary:is(:hover, :focus) {\n  background: var(--citrine);\n  color: var(--xiketic);\n}\n\n/**\n * MOVIE CARD\n */\n\n.movies-list {\n  display: grid;\n  gap: 50px;\n}\n\n.movie-card {\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.movie-card .card-banner {\n  width: 300px;\n  height: 400px;\n  position: relative;\n  background: var(--gunmetal-1);\n  aspect-ratio: 2 / 3;\n  border-radius: 6px;\n  overflow: hidden;\n  margin-bottom: 20px;\n  transition: var(--transition-1);\n}\n\n.movie-card .card-banner::after {\n  content: \"\";\n  position: absolute;\n  inset: 0;\n  transition: var(--transition-1);\n}\n\n.movie-card .card-banner:hover { box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5); }\n\n.movie-card .card-banner:hover::after { background: hsla(0, 0%, 100%, 0.05); }\n\n.movie-card .card-banner img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n.movie-card .title-wrapper {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 20px;\n  margin-bottom: 10px;\n}\n\n.movie-card .card-title {\n  color: var(--white);\n  font-size: var(--fs-7);\n  transition: var(--transition-1);\n}\n\n.movie-card .card-title:is(:hover, :focus) { color: var(--citrine); }\n\n.movie-card .title-wrapper time {\n  color: var(--citrine);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-500);\n}\n\n.movie-card .card-meta {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  gap: 15px;\n}\n\n.movie-card .badge { color: var(--citrine); }\n\n.movie-card .duration { margin-left: auto; }\n\n.movie-card :is(.duration, .rating) {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  color: var(--gainsboro);\n  font-size: var(--fs-11);\n  font-weight: var(--fw-500);\n}\n\n.movie-card :is(.duration, .rating) ion-icon {\n  font-size: 13px;\n  --ionicon-stroke-width: 50px;\n  color: var(--citrine);\n}\n\n/**\n * CUSTOM SLIDER & SCROLLBAR\n */\n\n.movies-list.has-scrollbar {\n  display: flex;\n  justify-content: flex-start;\n  gap: 30px;\n  overflow-x: auto;\n  scroll-snap-type: inline mandatory;\n  padding-bottom: 25px;\n}\n\n.has-scrollbar::-webkit-scrollbar { height: 8px; }\n\n.has-scrollbar::-webkit-scrollbar-track {\n  background: transparent;\n  box-shadow: 0 0 0 2px var(--citrine);\n  border-radius: 10px;\n}\n\n.has-scrollbar::-webkit-scrollbar-thumb {\n  background: var(--gainsboro);\n  border-radius: 10px;\n  box-shadow: inset 0 1px 0 var(--black),\n              inset 0 -1px 0 var(--black);\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #HEADER\n\\*-----------------------------------*/\n\n.header {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  padding-block: 25px;\n  transition: var(--transition-2);\n  z-index: 4;\n}\n\n.header.active {\n  background: var(--eerie-black);\n  padding-block: 20px;\n}\n\n.header .container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.header-actions { display: none; }\n\n.menu-open-btn {\n  color: var(--white);\n  font-size: 40px;\n}\n\n.navbar {\n  position: fixed;\n  top: 0;\n  right: -300px;\n  background: var(--eerie-black);\n  width: 100%;\n  max-width: 300px;\n  height: 100%;\n  box-shadow: -1px 0 3px hsl(0, 0%, 0%, 0.2);\n  transition: 0.15s ease-in;\n  visibility: hidden;\n  z-index: 3;\n}\n\n.navbar.active {\n  right: 0;\n  visibility: visible;\n  transition: 0.25s ease-out;\n}\n\n.navbar-top {\n  padding: 30px 25px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.menu-close-btn {\n  color: var(--white);\n  font-size: 25px;\n  padding: 5px;\n}\n\n.menu-close-btn ion-icon { --ionicon-stroke-width: 80px; }\n\n.navbar-list {\n  border-top: 1px solid hsla(0, 0%, 100%, 0.1);\n  margin-bottom: 30px;\n}\n\n.navbar-link {\n  color: var(--white);\n  font-size: var(--fs-8);\n  font-weight: var(--fw-500);\n  padding: 10px 25px;\n  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);\n  transition: var(--transition-1);\n}\n\n.navbar-link:is(:hover, :focus) { color: var(--citrine); }\n\n.navbar-social-list {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 20px;\n}\n\n.navbar-social-link {\n  font-size: 20px;\n  color: var(--white);\n  transition: var(--transition-1);\n}\n\n.navbar-social-link:is(:hover, :focus) { color: var(--citrine); }\n\n.overlay {\n  position: absolute;\n  inset: 0;\n  background: hsla(204, 18%, 11%, 0.8);\n  opacity: 0;\n  pointer-events: none;\n  z-index: 1;\n  transition: var(--transition-2);\n}\n\n.overlay.active {\n  opacity: 1;\n  pointer-events: all;\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #HERO\n\\*-----------------------------------*/\n\n.hero {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  min-height: 750px;\n  height: 100vh;\n  max-height: 1000px;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  padding-block: var(--section-padding);\n}\n\n.hero-content { margin-top: 60px; }\n\n.hero-subtitle {\n  color: var(--citrine);\n  font-size: var(--fs-4);\n  font-weight: var(--fw-700);\n  margin-bottom: 10px;\n}\n\n.hero-title { margin-bottom: 30px; }\n\n.hero-title > strong { color: var(--citrine); }\n\n\n\n\n\n/*-----------------------------------*\\\n * #UPCOMING\n\\*-----------------------------------*/\n\n.upcoming {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  padding-block: var(--section-padding);\n}\n\n.upcoming .flex-wrapper { margin-bottom: 50px; }\n\n.upcoming .section-title { margin-bottom: 30px; }\n\n.filter-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  gap: 10px;\n}\n\n.upcoming .filter-btn {\n  color: var(--white);\n  background: var(--raisin-black);\n  font-size: var(--fs-11);\n  font-weight: var(--fw-500);\n  border: 2px solid var(--gunmetal-1);\n  padding: 12px 26px;\n  border-radius: 50px;\n}\n\n.upcoming .filter-btn:focus { border-color: var(--citrine); }\n\n.upcoming .movies-list > li {\n  min-width: 100%;\n  scroll-snap-align: start;\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #SERVICE\n\\*-----------------------------------*/\n\n.service {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  padding-block: var(--section-padding);\n}\n\n.service-banner {\n  position: relative;\n  margin-bottom: 50px;\n  max-width: -moz-max-content;\n  max-width: max-content;\n}\n\n.service-banner img { width: 100%; }\n\n.service-btn {\n  position: absolute;\n  bottom: 0;\n  right: 86px;\n  background: var(--citrine);\n  color: var(--rich-black-fogra-29);\n  font-size: var(--fs-11);\n  text-transform: uppercase;\n  font-weight: var(--fw-500);\n  letter-spacing: 5px;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  transform: rotate(0.25turn);\n  transform-origin: bottom right;\n  padding: 28px 35px;\n  border-radius: 6px;\n}\n\n.service-btn ion-icon {\n  font-size: 30px;\n  transform: rotate(-0.25turn);\n}\n\n.service-subtitle {\n  position: relative;\n  color: var(--gainsboro);\n  font-size: var(--fs-11);\n  font-weight: var(--fw-500);\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  padding-left: 50px;\n  margin-bottom: 10px;\n}\n\n.service-subtitle::before {\n  content: \"\";\n  position: absolute;\n  top: 7px;\n  left: 0;\n  width: 40px;\n  height: 3px;\n  background: var(--citrine);\n}\n\n.service-title { margin-bottom: 20px; }\n\n.service-text,\n.service-card .card-text {\n  color: var(--gray-x);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-500);\n  line-height: 1.8;\n}\n\n.service-text { margin-bottom: 40px; }\n\n.service-list > li:first-child {\n  padding-bottom: 20px;\n  border-bottom: 1px dashed hsla(0, 0%, 100%, 0.1);\n  margin-bottom: 30px;\n}\n\n.service-card .card-icon {\n  color: var(--white);\n  width: 85px;\n  height: 85px;\n  display: grid;\n  place-items: center;\n  font-size: 40px;\n  border-radius: 50%;\n  outline: 1px dashed var(--citrine);\n  outline-offset: 5px;\n  margin: 5px;\n  margin-bottom: 20px;\n  transition: var(--transition-2);\n}\n\n.service-card:hover .card-icon { background: var(--citrine); }\n\n.service-card .card-title { margin-bottom: 10px; }\n\n\n\n\n\n/*-----------------------------------*\\\n * #TOP RATED\n\\*-----------------------------------*/\n\n.top-rated {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  padding-block: var(--section-padding);\n}\n\n.top-rated .section-title { margin-bottom: 50px; }\n\n.top-rated .filter-list {\n  gap: 15px;\n  margin-bottom: 50px;\n}\n\n.top-rated .filter-btn {\n  position: relative;\n  background: var(--rich-black-fogra-39);\n  color: var(--light-gray);\n  font-size: var(--fs-10);\n  font-weight: var(--fw-700);\n  text-transform: uppercase;\n  padding: 17px 25px;\n  border-radius: 4px;\n  box-shadow: inset 0 3px 7px hsla(0, 0%, 0%, 0.8);\n}\n\n.top-rated .filter-btn:focus {\n  color: var(--citrine);\n  text-shadow: 0 3px 25px hsla(57, 97%, 45%, 0.5);\n}\n\n.top-rated .filter-btn:focus::before,\n.top-rated .filter-btn:focus::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background: var(--citrine);\n  width: 2px;\n  height: 15px;\n}\n\n.top-rated .filter-btn:focus::before { left: 0; }\n\n.top-rated .filter-btn:focus::after { right: 0; }\n\n\n\n\n\n/*-----------------------------------*\\\n * #TV SEREIS\n\\*-----------------------------------*/\n\n.tv-series {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_4___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  padding-block: var(--section-padding);\n}\n\n.tv-series .section-title { margin-bottom: 50px; }\n\n\n\n\n\n/*-----------------------------------*\\\n * #CTA\n\\*-----------------------------------*/\n\n.cta {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_5___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  text-align: center;\n  padding-block: 50px;\n}\n\n.cta .title-wrapper { margin-bottom: 25px; }\n\n.cta-title {\n  color: var(--eerie-black);\n  font-size: var(--fs-3);\n  text-transform: uppercase;\n  line-height: 1.2;\n  margin-bottom: 5px;\n}\n\n.cta-text {\n  color: var(--eerie-black);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-500);\n  line-height: 1.8;\n}\n\n.cta .email-field {\n  color: var(--eerie-black);\n  font-size: var(--fs-9);\n  padding: 18px 32px;\n  border-radius: 4px;\n  box-shadow: 0 3px 4px hsla(0, 0%, 0%, 0.2);\n  margin-bottom: 15px;\n}\n\n.cta-form-btn {\n  background: var(--eerie-black);\n  color: var(--citrine);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-700);\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  border: 2px solid var(--eerie-black);\n  padding: 15px 34px;\n  border-radius: 4px;\n  margin-inline: auto;\n  transition: var(--transition-1);\n}\n\n.cta-form-btn:is(:hover, :focus) {\n  background: var(--citrine);\n  color: var(--eerie-black);\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #FOOTER\n\\*-----------------------------------*/\n\n.footer-top {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_6___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  padding-block: 80px 50px;\n}\n\n.footer-brand-wrapper .logo {\n  width: -moz-max-content;\n  width: max-content;\n  margin-inline: auto;\n  margin-bottom: 60px;\n}\n\n.footer-list,\n.quicklink-list,\n.social-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  gap: 5px;\n}\n\n.footer-link {\n  color: var(--light-gray);\n  font-size: var(--fs-9);\n  font-weight: var(--fw-700);\n  text-transform: uppercase;\n  padding: 5px 15px;\n  transition: var(--transition-1);\n}\n\n:is(.footer-link, .quicklink-link, .social-link):is(:hover, :focus) { color: var(--citrine); }\n\n.divider {\n  height: 4px;\n  margin-block: 40px;\n  border-top: 1px solid var(--rich-black-fogra-29);\n  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);\n}\n\n.quicklink-list { margin-bottom: 20px; }\n\n.quicklink-link {\n  color: var(--gray-x);\n  font-size: var(--fs-10);\n  font-weight: var(--fw-500);\n  text-transform: uppercase;\n  padding: 2px 10px;\n  transition: var(--transition-1);\n}\n\n.social-list { -moz-column-gap: 10px; column-gap: 10px; }\n\n.social-link {\n  background: var(--rich-black-fogra-29);\n  color: var(--gray-x);\n  font-size: 14px;\n  width: 35px;\n  height: 35px;\n  display: grid;\n  place-items: center;\n  border-radius: 50%;\n  box-shadow: inset 0 4px 8px hsla(0, 0%, 0%, 0.25);\n  transition: var(--transition-1);\n}\n\n.footer-bottom { padding-block: 25px; }\n\n.copyright {\n  color: var(--gray-x);\n  font-size: var(--fs-10);\n  font-weight: var(--fw-500);\n  line-height: 1.7;\n  text-align: center;\n  margin-bottom: 15px;\n}\n\n.copyright > a {\n  display: inline-block;\n  color: var(--citrine);\n}\n\n.footer-bottom-img {\n  max-width: -moz-max-content;\n  max-width: max-content;\n  width: 100%;\n  margin-inline: auto;\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #GO TO TOP\n\\*-----------------------------------*/\n\n.go-top {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  background: var(--citrine);\n  color: var(--eerie-black);\n  width: 50px;\n  height: 50px;\n  display: grid;\n  place-items: center;\n  border-radius: 50%;\n  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.5);\n  opacity: 0;\n  visibility: hidden;\n  transition: var(--transition-2);\n  z-index: 2;\n}\n\n.go-top.active {\n  opacity: 1;\n  visibility: visible;\n}\n\n\n\n\n\n/*-----------------------------------*\\\n * #MOVIE DETAIL \n\\*-----------------------------------*/\n\n.movie-detail {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_7___ + ") no-repeat;\n  background-size: cover;\n  background-position: center;\n  padding-top: 160px;\n  padding-bottom: var(--section-padding);\n}\n\n.movie-detail-banner {\n  position: relative;\n  background: var(--gunmetal-1);\n  max-width: 300px;\n  margin-inline: auto;\n  border-radius: 6px;\n  overflow: hidden;\n  margin-bottom: 50px;\n}\n\n.movie-detail-banner img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n.play-btn {\n  position: absolute;\n  inset: 0;\n  display: grid;\n  place-items: center;\n  font-size: 120px;\n  color: var(--white);\n  transition: var(--transition-1);\n}\n\n.play-btn:hover { background: hsla(0, 0%, 0%, 0.25); }\n\n.detail-subtitle {\n  font-size: var(--fs-5);\n  color: var(--citrine);\n  font-weight: var(--fw-700);\n  margin-bottom: 10px;\n}\n\n.detail-title { margin-bottom: 20px; }\n\n.detail-title strong { color: var(--citrine); }\n\n.movie-detail .meta-wrapper { margin-bottom: 30px; }\n\n.storyline {\n  color: white;\n  font-size: var(--fs-9);\n  font-weight: var(--fw-500);\n  line-height: 1.8;\n  margin-bottom: 40px;\n}\n\n.details-actions {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  gap: 20px 40px;\n  max-width: 460px;\n  background: var(--gunmetal-2);\n  padding: 25px;\n  border: 1px solid var(--jet);\n  border-radius: 4px;\n  margin-bottom: 30px;\n}\n\n.details-actions .share ion-icon {\n  font-size: 25px;\n  color: var(--white);\n  margin-inline: auto;\n}\n\n.details-actions .share span {\n  color: var(--gainsboro);\n  font-size: var(--fs-11);\n  transition: var(--transition-1);\n}\n\n.details-actions .share:is(:hover, :focus) span { color: var(--citrine); }\n\n.details-actions .title {\n  color: var(--white);\n  font-weight: var(--fw-700);\n}\n\n.details-actions .text {\n  font-size: var(--fs-11);\n  color: var(--gainsboro);\n}\n\n.details-actions .btn-primary {\n  font-size: 10px;\n  padding: 13px 26px;\n  letter-spacing: 0;\n  background: transparent;\n}\n\n.details-actions .btn-primary:is(:hover, :focus) { background: var(--citrine); }\n\n.download-btn {\n  max-width: -moz-max-content;\n  max-width: max-content;\n  color: var(--rich-black-fogra-29);\n  font-size: var(--fs-11);\n  font-weight: var(--fw-500);\n  text-transform: uppercase;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 20px 35px;\n  letter-spacing: 5px;\n  border-radius: 6px;\n}\n\n.download-btn ion-icon { font-size: 16px; }\n\n\n\n\n\n/*-----------------------------------*\\\n * #MEDIA QUERIES\n\\*-----------------------------------*/\n\n/**\n * responsive for large than 550px screen\n */\n\n@media (min-width: 550px) {\n\n  /**\n   * CUSTOM PROPERTY\n   */\n\n  :root {\n\n    /**\n     * typography\n     */\n\n    --fs-1: 42px;\n\n  }\n\n\n\n  /**\n   * REUSED STYLE\n   */\n\n  .container {\n    max-width: 540px;\n    margin-inline: auto;\n  }\n\n  /* MOVIE CARD */\n\n  .movies-list {\n    grid-template-columns: 1fr 1fr;\n    gap: 60px 30px;\n  }\n\n\n\n  /**\n   * HERO\n   */\n\n  .hero { min-height: unset; }\n\n  .hero-content { margin-top: 20px; }\n\n\n\n  /**\n   * UPCOMING\n   */\n\n  .upcoming .movies-list > li { min-width: calc(50% - 15px); }\n\n\n\n  /**\n   * SERVICE\n   */\n\n  .service-list > li:first-child { padding-bottom: 30px; }\n\n  .service-card {\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .service-card .card-icon { margin-bottom: 0; }\n\n  .service-card .card-content { width: calc(100% - 115px); }\n\n\n\n  /**\n   * MOVIE DETAIL\n   */\n\n  .detail-subtitle { --fs-5: 22px; }\n\n  .detail-title { --fs-1: 46px; }\n\n}\n\n\n\n\n\n/**\n * responsive for large than 768px screen\n */\n\n@media (min-width: 768px) {\n\n  /**\n   * CUSTOM PROPERTY\n   */\n\n  :root {\n\n    /**\n     * typography\n     */\n\n    --fs-2: 36px;\n\n  }\n\n\n\n  /**\n   * REUSED STYLE\n   */\n\n  .container { max-width: 720px; }\n\n\n\n  /**\n   * HEADER\n   */\n\n  .header .container { gap: 30px; }\n\n  .header-actions {\n    display: flex;\n    margin-left: auto;\n    align-items: center;\n    gap: 35px;\n  }\n\n  .header-actions .btn-primary { display: none; }\n\n  .search-btn {\n    position: relative;\n    color: var(--white);\n  }\n\n  .search-btn ion-icon { --ionicon-stroke-width: 80px; }\n\n  .search-btn::after {\n    content: \"\";\n    position: absolute;\n    top: 1px;\n    right: -20px;\n    background: hsla(0, 0%, 100%, 0.1);\n    width: 2px;\n    height: 14px;\n  }\n\n  .lang-wrapper {\n    display: flex;\n    align-items: center;\n    gap: 5px;\n  }\n\n  .lang-wrapper label {\n    color: var(--citrine);\n    font-size: 20px;\n  }\n\n  .lang-wrapper select {\n    color: var(--white);\n    font-size: var(--fs-9);\n    font-weight: var(--fw-700);\n  }\n\n  .lang-wrapper option { color: var(--black); }\n\n\n\n  /**\n   * HERO\n   */\n\n  .hero-content { margin-top: 90px; }\n\n\n\n  /**\n   * SERVICE\n   */\n\n  .service-btn {\n    right: -20px;\n    padding: 40px 50px;\n  }  \n\n  .service-content { padding-inline: 40px; }\n\n\n\n  /**\n   * CTA\n   */\n\n  .cta-form {\n    position: relative;\n    max-width: 530px;\n    margin-inline: auto;\n  }\n\n  .cta .email-field { margin-bottom: 0; }\n\n  .cta-form-btn {\n    position: absolute;\n    top: 2px;\n    right: 2px;\n    bottom: 2px;\n  }\n\n\n\n  /**\n   * FOOTER\n   */\n\n  .footer-brand-wrapper .logo { margin: 0; }\n\n  .footer-brand-wrapper,\n  .quicklink-wrapper,\n  .footer-bottom .container {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .quicklink-list { margin-bottom: 0; }\n\n  .copyright { margin-bottom: 0; }\n\n  .footer-bottom-img { margin-inline: 0; }\n\n\n\n  /**\n   * MOVIE DETAIL\n   */\n\n  .detail-subtitle { --fs-5: 26px; }\n\n  .detail-title { --fs-1: 50px; }\n\n}\n\n\n\n\n\n/**\n * responsive for large than 992px screen\n */\n\n@media (min-width: 992px) {\n\n  /**\n   * REUSED STYLE\n   */\n\n  .container { max-width: 960px; }\n\n  /* MOVIE CARD */\n\n  .movies-list { grid-template-columns: repeat(3, 1fr); }\n\n\n\n  /**\n   * HEADER\n   */\n\n  .header.active { padding-block: 5px; }\n\n  .menu-open-btn,\n  .navbar-top,\n  .navbar-social-list { display: none; }\n\n  .navbar {\n    all: unset;\n    margin-left: auto;\n  }\n\n  .header-actions {\n    order: 1;\n    margin-left: 0;\n  }\n\n  .navbar-list {\n    all: unset;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n  }\n\n  .navbar-link {\n    border-bottom: none;\n    font-size: var(--fs-9);\n    font-weight: var(--fw-700);\n    text-transform: uppercase;\n    padding: 30px 15px;\n  }\n\n  .overlay { display: none; }\n\n\n\n  /**\n   * HERO\n   */\n\n  .hero { background-position: right; }\n\n  .hero .container { width: 950px; }\n\n  .hero-content {\n    margin-top: 100px;\n    max-width: 600px;\n  }\n\n\n\n  /**\n   * UPCOMING\n   */\n\n  .upcoming .flex-wrapper {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .upcoming :is(.section-subtitle, .section-title) { text-align: left; }\n\n  .upcoming .section-title { margin-bottom: 0; }\n\n  .upcoming .movies-list > li { min-width: calc(33.33% - 20px); }\n\n\n\n  /**\n   * SERVICE\n   */\n\n  .service .container {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 70px;\n  }\n\n  .service-content {\n    padding-inline: 0;\n    width: calc(100% - 470px);\n  }\n\n  .service-banner { margin-bottom: 0; }\n\n  .service-btn { right: 111px; }\n\n\n\n  /**\n   * CTA\n   */\n\n  .cta { text-align: left; }\n\n  .cta .container {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .cta .title-wrapper {\n    margin-bottom: 0;\n    width: 100%;\n  }\n\n  .cta-form {\n    margin-inline: 0;\n    max-width: unset;\n    width: 100%;\n  }\n\n\n\n  /**\n   * MOVIE DETAIL\n   */\n\n  .movie-detail { padding-bottom: 200px; }\n\n  .movie-detail .container {\n    position: relative;\n    display: flex;\n    align-items: center;\n    gap: 50px;\n  }\n\n  .movie-detail-banner,\n  .details-actions { margin: 0; }\n\n  .download-btn {\n    position: absolute;\n    left: 15px;\n    bottom: -80px;\n  }\n\n}\n\n\n\n\n\n/**\n * responsive for large than 1200px screen\n */\n\n@media (min-width: 1200px) {\n\n  /**\n   * CUSTOM PROPERTY\n   */\n\n  :root {\n\n    /**\n     * typography\n     */\n\n    --fs-1: 60px;\n    --fs-4: 26px;\n\n  }\n\n\n\n  /**\n   * REUSED STYLE\n   */\n\n  .container { max-width: 1320px; }\n\n  /* MOVIE CARD */\n\n  .movies-list { grid-template-columns: repeat(4, 1fr); }\n\n\n\n  /**\n   * HEADER\n   */\n\n  .navbar { margin-inline: auto; }\n\n  .header-actions .btn-primary {\n    display: block;\n    --fs-11: 14px;\n    padding: 10px 35px;\n    letter-spacing: 1px;\n  }\n\n\n\n  /**\n   * HERO\n   */\n\n  .hero .container { width: 1320px; }\n\n\n\n  /**\n   * UPCOMING\n   */\n\n  .upcoming .movies-list > li { min-width: calc(25% - 22.5px); }\n\n\n\n  /**\n   * SERVICE\n   */\n\n  .service-content { width: calc(100% - 700px); }\n\n  .service-btn { right: -20px; }\n\n  .service-list,\n  .service-title { max-width: 480px; }\n\n\n\n  /**\n   * CTA\n   */\n\n  .cta .container { max-width: 1150px; }\n\n\n\n  /**\n   * MOVIE DETAIL\n   */\n\n  .movie-detail { padding-bottom: var(--section-padding); }\n\n  .movie-detail-content { max-width: 620px; }\n\n  .detail-title { --fs-1: 60px; }\n\n  .download-btn {\n    left: auto;\n    right: 15px;\n    bottom: 0;\n    transform: rotate(0.25turn) translateY(100%);\n    transform-origin: bottom right;\n    padding: 40px 50px;\n  }\n\n  .download-btn ion-icon {\n    font-size: 30px;\n    transform: rotate(-0.25turn);\n  }\n\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14773,6 +16725,50 @@ module.exports = function (cssWithMappingToString) {
   };
 
   return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = url && url.__esModule ? url.default : url;
+
+  if (typeof url !== "string") {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    // eslint-disable-next-line no-param-reassign
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+
+  return url;
 };
 
 /***/ }),
@@ -14918,6 +16914,126 @@ var deepmerge_1 = deepmerge;
 
 module.exports = deepmerge_1;
 
+
+/***/ }),
+
+/***/ "./public/images/cta-bg.jpg":
+/*!**********************************!*\
+  !*** ./public/images/cta-bg.jpg ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/cta-bg.jpg?b49b50505c718bb828f1701d99c7acf0");
+
+/***/ }),
+
+/***/ "./public/images/footer-bg.jpg":
+/*!*************************************!*\
+  !*** ./public/images/footer-bg.jpg ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/footer-bg.jpg?6b41023ee51e6eceae64e797f599f61e");
+
+/***/ }),
+
+/***/ "./public/images/movie-detail-bg.png":
+/*!*******************************************!*\
+  !*** ./public/images/movie-detail-bg.png ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/movie-detail-bg.png?24a8ff8834225fb5e4763858e2d2bc1e");
+
+/***/ }),
+
+/***/ "./public/images/service-bg.jpg":
+/*!**************************************!*\
+  !*** ./public/images/service-bg.jpg ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/service-bg.jpg?ce9c5e6d87c2e8b92af56e7b5649adf5");
+
+/***/ }),
+
+/***/ "./public/images/top-rated-bg.jpg":
+/*!****************************************!*\
+  !*** ./public/images/top-rated-bg.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/top-rated-bg.jpg?b345ea7c7de0dea24feb48677ebe0e6e");
+
+/***/ }),
+
+/***/ "./public/images/tv-series-bg.jpg":
+/*!****************************************!*\
+  !*** ./public/images/tv-series-bg.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/tv-series-bg.jpg?a5091c5e1811c9c691ab17ad5ff864f6");
+
+/***/ }),
+
+/***/ "./public/images/upcoming-bg.png":
+/*!***************************************!*\
+  !*** ./public/images/upcoming-bg.png ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/upcoming-bg.png?3543fdf973695b573f31e4112987c9f1");
+
+/***/ }),
+
+/***/ "./storage/app/public/movies/4.jpg":
+/*!*****************************************!*\
+  !*** ./storage/app/public/movies/4.jpg ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/4.jpg?fdb73c0311727b634639c4709e8ee5d8");
 
 /***/ }),
 
@@ -50645,10 +52761,10 @@ module.exports = function getSideChannel() {
 
 /***/ }),
 
-/***/ "./node_modules/react-dropdown/style.css":
-/*!***********************************************!*\
-  !*** ./node_modules/react-dropdown/style.css ***!
-  \***********************************************/
+/***/ "./public/css/front-end.css":
+/*!**********************************!*\
+  !*** ./public/css/front-end.css ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -50656,9 +52772,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./style.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/react-dropdown/style.css");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_front_end_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./front-end.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./public/css/front-end.css");
 
             
 
@@ -50667,11 +52783,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_style_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_front_end_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_style_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_front_end_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -50971,8 +53087,24 @@ var map = {
 	"./Home.jsx": "./resources/js/Pages/Home.jsx",
 	"./Index": "./resources/js/Pages/Index.jsx",
 	"./Index.jsx": "./resources/js/Pages/Index.jsx",
+	"./Movies/AnimeList": "./resources/js/Pages/Movies/AnimeList.jsx",
+	"./Movies/AnimeList.jsx": "./resources/js/Pages/Movies/AnimeList.jsx",
+	"./Movies/Content": "./resources/js/Pages/Movies/Content.jsx",
+	"./Movies/Content.jsx": "./resources/js/Pages/Movies/Content.jsx",
 	"./Movies/Index": "./resources/js/Pages/Movies/Index.jsx",
 	"./Movies/Index.jsx": "./resources/js/Pages/Movies/Index.jsx",
+	"./Movies/MovieList": "./resources/js/Pages/Movies/MovieList.jsx",
+	"./Movies/MovieList.jsx": "./resources/js/Pages/Movies/MovieList.jsx",
+	"./Movies/Moviedetail": "./resources/js/Pages/Movies/Moviedetail.jsx",
+	"./Movies/Moviedetail.jsx": "./resources/js/Pages/Movies/Moviedetail.jsx",
+	"./Movies/Profile": "./resources/js/Pages/Movies/Profile.jsx",
+	"./Movies/Profile.jsx": "./resources/js/Pages/Movies/Profile.jsx",
+	"./Tags/Index": "./resources/js/Pages/Tags/Index.jsx",
+	"./Tags/Index.jsx": "./resources/js/Pages/Tags/Index.jsx",
+	"./Users/FavoriteList": "./resources/js/Pages/Users/FavoriteList.jsx",
+	"./Users/FavoriteList.jsx": "./resources/js/Pages/Users/FavoriteList.jsx",
+	"./Users/HistoryList": "./resources/js/Pages/Users/HistoryList.jsx",
+	"./Users/HistoryList.jsx": "./resources/js/Pages/Users/HistoryList.jsx",
 	"./Users/Index": "./resources/js/Pages/Users/Index.jsx",
 	"./Users/Index.jsx": "./resources/js/Pages/Users/Index.jsx",
 	"./Users/Profile": "./resources/js/Pages/Users/Profile.jsx",

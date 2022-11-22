@@ -34,6 +34,7 @@
         "react-dropdown": "^1.11.0",
         "react-helmet": "^6.1.0",
         "react-hot-toast": "^2.4.0",
-        "react-search-field": "^2.0.1"
+        "react-search-field": "^2.0.1",
+        "video-react": "^0.15.0"
     }
 }

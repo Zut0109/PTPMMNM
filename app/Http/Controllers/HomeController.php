@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Requests\MovieRequest;
+use App\Http\Resources\MovieResource;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +18,9 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('Index');
+        $movies = MovieResource::collection(Movie::latest()->paginate(10));
+        return inertia('Index', [
+            'movies' => $movies,
+        ]);
     }
 }

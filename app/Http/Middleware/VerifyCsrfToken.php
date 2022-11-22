@@ -14,6 +14,11 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'profile',
         'movies',
-        'moviedetail'
+        'tags',
+        'moviedetail',
+        'editmovie',
+        'uploadmovieimage',
+        'uploadvideo',
+        'addfavorite',
     ];
 }
